@@ -24,6 +24,16 @@
   @keyframes rouletteL { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes rouletteR { from { transform: translateX(-50%); } to { transform: translateX(0); } }
   @media (prefers-reduced-motion: reduce) { [data-dev] { animation: none !important; } }
+  .desktop-nav { display: flex; align-items: center; gap: clamp(12px, 2vw, 28px); }
+  .mobile-menu-toggle, .mobile-nav { display: none; }
+  @media (max-width: 720px) {
+    .desktop-nav { display: none; }
+    .mobile-menu-toggle { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 44px; width: 44px; height: 44px; border: 1px solid rgba(26,23,20,0.18); border-radius: 50%; background: transparent; color: #1A1714; cursor: pointer; }
+    .mobile-nav { flex-basis: 100%; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0 4px; }
+    .mobile-nav a { display: block; padding: 14px 4px; border-top: 1px solid rgba(26,23,20,0.10); color: #4A423B; font-size: 16px; font-weight: 500; }
+    .mobile-nav a:last-child { border-bottom: 1px solid rgba(26,23,20,0.10); }
+    .mobile-nav[aria-hidden="false"] { display: flex; }
+  }
 </style>
 </helmet>
 
@@ -35,12 +45,22 @@
         <img src="assets/belen.png" alt="Belén Briones" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; background: #E6E9F7; box-shadow: 0 2px 10px rgba(26,23,20,0.12);">
         <span style="font-family: 'Instrument Serif', serif; font-size: 20px; color: #1A1714; letter-spacing: 0.01em;">Belén Briones</span>
       </a>
-      <a href="#inicio" style="color: #4A423B; font-size: 15px; font-weight: 500;">{{ t.navHome }}</a>
-      <a href="#proyectos" style="color: #4A423B; font-size: 15px; font-weight: 500;">{{ t.navWork }}</a>
-      <a href="#sobre-mi" style="color: #4A423B; font-size: 15px; font-weight: 500;">{{ t.navAbout }}</a>
-      <a href="#cv" style="color: #4A423B; font-size: 15px; font-weight: 500;">CV</a>
-      <button type="button" onClick="{{ toggleLang }}" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; padding: 8px 12px; border-radius: 999px; cursor: pointer;" style-hover="border-color: #B4527C; color: #B4527C;">{{ t.langLabel }}</button>
-      <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #4A1F35; font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 999px;" style-hover="background: #E5A9C1;">{{ t.contact }}</a>
+      <button type="button" class="mobile-menu-toggle" onClick="{{ toggleMobileMenu }}" aria-expanded="{{ mobileMenuOpen }}" aria-controls="mobile-navigation" aria-label="Abrir menú"><span aria-hidden="true" style="font-size: 22px; line-height: 1;">☰</span></button>
+      <div class="desktop-nav">
+        <a href="#inicio" style="color: #4A423B; font-size: 15px; font-weight: 500;">{{ t.navHome }}</a>
+        <a href="#proyectos" style="color: #4A423B; font-size: 15px; font-weight: 500;">{{ t.navWork }}</a>
+        <a href="#sobre-mi" style="color: #4A423B; font-size: 15px; font-weight: 500;">{{ t.navAbout }}</a>
+        <a href="#cv" style="color: #4A423B; font-size: 15px; font-weight: 500;">CV</a>
+        <button type="button" onClick="{{ toggleLang }}" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; padding: 8px 12px; border-radius: 999px; cursor: pointer;" style-hover="border-color: #B4527C; color: #B4527C;">{{ t.langLabel }}</button>
+        <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #4A1F35; font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 999px;" style-hover="background: #E5A9C1;">{{ t.contact }}</a>
+      </div>
+      <div id="mobile-navigation" class="mobile-nav" aria-hidden="{{ mobileMenuOpen ? 'false' : 'true' }}">
+        <a href="#inicio" onClick="{{ closeMobileMenu }}">{{ t.navHome }}</a>
+        <a href="#proyectos" onClick="{{ closeMobileMenu }}">{{ t.navWork }}</a>
+        <a href="#sobre-mi" onClick="{{ closeMobileMenu }}">{{ t.navAbout }}</a>
+        <a href="#cv" onClick="{{ closeMobileMenu }}">CV</a>
+        <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" onClick="{{ closeMobileMenu }}">{{ t.contact }}</a>
+      </div>
     </nav>
   </header>
 
@@ -420,7 +440,7 @@ const COPY = {
 };
 
 class Component extends DCLogic {
-  state = { lang: (function () { try { return localStorage.getItem("bb-lang") === "en" ? "en" : "es"; } catch (e) { return "es"; } })(), open: null, index: 0, heroPaused: false, heroFlowerMoved: false, topFlowerMoved: false, bottomFlowerMoved: false };
+  state = { lang: (function () { try { return localStorage.getItem("bb-lang") === "en" ? "en" : "es"; } catch (e) { return "es"; } })(), open: null, index: 0, heroPaused: false, heroFlowerMoved: false, topFlowerMoved: false, bottomFlowerMoved: false, mobileMenuOpen: false };
 
   setLang(lang) {
     try { localStorage.setItem("bb-lang", lang); } catch (e) {}
@@ -469,6 +489,7 @@ class Component extends DCLogic {
     const bottomFlowerTransform = this.state.bottomFlowerMoved ? "translateY(-7px) rotate(-3deg)" : "translateY(0) rotate(4deg)";
     const heroFlowerTransform = this.state.heroFlowerMoved ? "translateY(8px) rotate(4deg)" : "translateY(0) rotate(-4deg)";
     const toggleHero = () => this.setState(s => ({ heroPaused: !s.heroPaused }));
+    const mobileMenuOpen = this.state.mobileMenuOpen;
     const projects = DATA.map((p, i) => Object.assign({
       image: p.image, year: p.year, tools: p.tools,
       open: () => { if (p.page) { window.location.href = p.page; } else { this.setState({ open: i }); } }
@@ -484,6 +505,9 @@ class Component extends DCLogic {
       topFlowerTransform,
       bottomFlowerTransform,
       heroFlowerTransform,
+      mobileMenuOpen,
+      toggleMobileMenu: () => this.setState(s => ({ mobileMenuOpen: !s.mobileMenuOpen })),
+      closeMobileMenu: () => this.setState({ mobileMenuOpen: false }),
       nudgeHeroFlower: () => this.setState({ heroFlowerMoved: !this.state.heroFlowerMoved }),
       nudgeTopFlower: () => this.setState(s => ({ topFlowerMoved: !s.topFlowerMoved })),
       nudgeBottomFlower: () => this.setState(s => ({ bottomFlowerMoved: !s.bottomFlowerMoved })),
