@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="./assets/favicon-bb.svg">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Hanken+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #FBF7F2; color: #1A1714; font-family: 'Hanken Grotesk', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #B4527C; text-decoration: none; }
+  a:hover { color: #8E3A5E; }
+  ::selection { background: #F0C6D6; }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes rouletteL { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes rouletteR { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  @media (prefers-reduced-motion: reduce) { [data-dev] { animation: none !important; } }
+</style>
+</helmet>
+
+<div style="width: 100%; overflow-x: clip;">
+
+  <header style="position: sticky; top: 0; z-index: 50; backdrop-filter: blur(22px) saturate(180%); -webkit-backdrop-filter: blur(22px) saturate(180%); background: linear-gradient(180deg, rgba(255,253,251,0.72) 0%, rgba(251,247,242,0.55) 100%); border-bottom: 1px solid rgba(255,255,255,0.55); box-shadow: 0 1px 0 rgba(26,23,20,0.05), 0 10px 30px -18px rgba(26,23,20,0.35);">
+    <nav style="max-width: 1240px; margin: 0 auto; padding: 14px clamp(16px, 4vw, 40px); display: flex; align-items: center; gap: clamp(12px, 2vw, 28px); flex-wrap: wrap;">
+      <a href="#inicio" style="display: flex; align-items: center; gap: 12px; margin-right: auto;">
+        <img src="assets/belen.png" alt="Belén Briones" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; background: #E6E9F7; box-shadow: 0 2px 10px rgba(26,23,20,0.12);">
+        <span style="font-family: 'Instrument Serif', serif; font-size: 20px; color: #1A1714; letter-spacing: 0.01em;">Belén Briones</span>
+      </a>
+      <a href="#inicio" style="color: #4A423B; font-size: 15px; font-weight: 500;">{{ t.navHome }}</a>
+      <a href="#proyectos" style="color: #4A423B; font-size: 15px; font-weight: 500;">{{ t.navWork }}</a>
+      <a href="#sobre-mi" style="color: #4A423B; font-size: 15px; font-weight: 500;">{{ t.navAbout }}</a>
+      <a href="#cv" style="color: #4A423B; font-size: 15px; font-weight: 500;">CV</a>
+      <button type="button" onClick="{{ toggleLang }}" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; padding: 8px 12px; border-radius: 999px; cursor: pointer;" style-hover="border-color: #B4527C; color: #B4527C;">{{ t.langLabel }}</button>
+      <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #4A1F35; font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 999px;" style-hover="background: #E5A9C1;">{{ t.contact }}</a>
+    </nav>
+  </header>
+
+  <section id="inicio" style="position: relative; background: linear-gradient(105deg, #E3E9F8 0%, #EFEAF3 38%, #F9F0E6 72%, #FAF3EA 100%); padding: clamp(48px, 7vw, 96px) clamp(16px, 4vw, 40px) clamp(60px, 8vw, 110px);">
+    <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(32px, 5vw, 64px); align-items: center;">
+      <div style="animation: fadeUp 0.7s ease both;">
+        <p style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.08; margin: 0 0 4px; color: #2F2924; width: 673px; height: 66px">{{ t.heroRole }}</p>
+        
+        <h1 style="font-family: 'Hanken Grotesk', system-ui, sans-serif; font-weight: 300; font-style: normal; font-size: clamp(24px, 3.2vw, 40px); line-height: 1.12; margin: 0 0 22px; letter-spacing: -0.01em;"><i style="font-style: normal;">Belén Briones Ibeas</i></h1><p style="font-size: clamp(16px, 1.5vw, 19px); line-height: 1.6; color: #57504A; max-width: 46ch; margin: 0 0 34px; text-wrap: pretty;">{{ t.heroText }}</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px;">
+          <a href="#proyectos" style="background: #FFFFFF; color: #1A1714; font-weight: 600; font-size: 17px; padding: 16px 32px; border-radius: 999px; box-shadow: 0 10px 26px rgba(26,23,20,0.10);" style-hover="box-shadow: 0 14px 34px rgba(26,23,20,0.18); transform: translateY(-2px);">{{ t.heroCta }}</a>
+          <a href="https://www.linkedin.com/in/belen-briones-uxui/" target="_blank" rel="noopener" style="border: 1px solid rgba(26,23,20,0.22); color: #1A1714; font-weight: 600; font-size: 17px; padding: 16px 30px; border-radius: 999px;" style-hover="background: rgba(255,255,255,0.6);">LinkedIn</a>
+        </div>
+        <div onClick="{{ nudgeHeroFlower }}" role="button" tabindex="0" aria-label="Mover ilustración floral" style="position: absolute; z-index: 3; right: 7%; top: 8%; width: clamp(120px, 17vw, 210px); height: clamp(120px, 17vw, 210px); cursor: pointer; transform: {{ heroFlowerTransform }}; transition: transform 0.45s cubic-bezier(.22,1,.36,1);" style-active="transform: translateY(8px) rotate(4deg);">
+          <img src="assets/dunar-flower.png" alt="Ilustración floral" style="width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none;">
+        </div>
+      </div>
+
+      <div data-dev="" onClick="{{ toggleHero }}" title="Clic para pausar" style="cursor: pointer; position: relative; min-height: clamp(400px, 46vw, 560px); overflow: hidden; animation: fadeUp 0.9s ease both; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);">
+        <div style="position: absolute; left: -14%; top: 50%; width: 128%; transform: translateY(-50%) rotate(-16deg); display: flex; flex-direction: column; gap: clamp(18px, 2.4vw, 34px);">
+        <div style="display: flex; align-items: center; gap: clamp(18px, 2.6vw, 34px); width: max-content; animation: rouletteL 26s linear infinite; animation-play-state: {{ heroPlay }};">
+          <img src="assets/dev-savia.png" alt="Ficha de producto de la app Savia" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-pix-laptop.png" alt="Libro web PiX en notebook" style="height: 140px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-vedimaq.png" alt="Catálogo Vedimaq en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-savia.png" alt="Ficha de producto de la app Savia" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-pix-laptop.png" alt="Libro web PiX en notebook" style="height: 140px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-vedimaq.png" alt="Catálogo Vedimaq en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+        </div>
+        <div style="display: flex; align-items: center; gap: clamp(18px, 2.6vw, 34px); width: max-content; animation: rouletteR 32s linear infinite; animation-play-state: {{ heroPlay }};">
+          <img src="assets/dev-trinidad-tablet.png" alt="Web de Trinidad Ureta en tablet" style="height: 150px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-pix-tablet.png" alt="Libro PiX en tablet" style="height: 130px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/trinidad-estudio.png" alt="Sección estudio de Trinidad Ureta en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-trinidad-tablet.png" alt="Web de Trinidad Ureta en tablet" style="height: 150px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-pix-tablet.png" alt="Libro PiX en tablet" style="height: 130px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/trinidad-estudio.png" alt="Sección estudio de Trinidad Ureta en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proyectos" style="padding: clamp(56px, 8vw, 104px) 0 clamp(48px, 7vw, 90px); background: #FBF7F2;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap;">
+      <div style="flex: 1 1 320px;">
+        <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #B4527C; margin-bottom: 12px;">{{ t.workKicker }}</span>
+        <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5vw, 56px); line-height: 1.06; margin: 0 0 12px;">{{ t.workTitle }}</h2>
+        <p style="font-size: 17px; line-height: 1.6; color: #57504A; max-width: 52ch; margin: 0; text-wrap: pretty;">{{ t.workText }}</p>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button type="button" aria-label="Anterior" onClick="{{ prev }}" style="width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(26,23,20,0.20); background: #FFFFFF; color: #1A1714; font-size: 30px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center;" style-hover="border-color: #B4527C; color: #B4527C;">&#x2039;</button>
+        <button type="button" aria-label="Siguiente" onClick="{{ next }}" style="width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(26,23,20,0.20); background: #FFFFFF; color: #1A1714; font-size: 30px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center;" style-hover="border-color: #B4527C; color: #B4527C;">&#x203A;</button>
+      </div>
+    </div>
+
+    <div id="carousel-track" onMouseEnter="{{ pause }}" onMouseLeave="{{ resume }}" onTouchStart="{{ pause }}" style="margin-top: clamp(28px, 4vw, 46px); display: flex; gap: clamp(16px, 2vw, 26px); overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; scroll-padding-left: clamp(16px, 4vw, 40px); padding: 6px clamp(16px, 4vw, 40px) 30px; scrollbar-width: none;">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
+        <article onClick="{{ p.open }}" style="flex: 0 0 min(84vw, 400px); scroll-snap-align: start; background: #FBF7F2; border: 1px solid rgba(26,23,20,0.16); border-radius: 0; box-shadow: none; cursor: pointer; display: flex; flex-direction: column; padding: 22px 22px 26px; transition: background 0.3s ease, border-color 0.3s ease;" style-hover="background: #FFFFFF; border-color: rgba(26,23,20,0.42);">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px;">
+            <span style="font-size: 12px; letter-spacing: 0.06em; color: #7A7168;">{{ p.year }}</span>
+            <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #4A423B; border: 1px solid rgba(26,23,20,0.28); border-radius: 999px; padding: 5px 12px;">{{ p.tag }}</span>
+          </div>
+          <div style="aspect-ratio: 4 / 3; overflow: hidden; background: #EFEAF3; margin-bottom: 20px;">
+            <img src="{{ p.image }}" alt="{{ p.title }}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
+            <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 27px; line-height: 1.15; margin: 0;">{{ p.title }}</h3>
+            <p style="font-size: 15px; line-height: 1.55; color: #57504A; margin: 0; text-wrap: pretty;">{{ p.summary }}</p>
+            <span style="margin-top: auto; padding-top: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #1A1714; text-decoration: underline; text-underline-offset: 4px;">{{ t.viewCase }}</span>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+
+    <div style="max-width: 1240px; margin: clamp(10px, 2vw, 22px) auto 0; padding: 0 clamp(16px, 4vw, 40px);">
+      <h3 style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #B4527C; margin: 0 0 18px;">{{ moreTitle }}</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: clamp(16px, 2vw, 26px);">
+        <sc-for list="{{ moreProjects }}" as="p" hint-placeholder-count="2">
+          <article onClick="{{ p.open }}" style="flex: 0 0 min(84vw, 400px); background: #FBF7F2; border: 1px solid rgba(26,23,20,0.16); cursor: pointer; display: flex; flex-direction: column; padding: 22px 22px 26px; transition: background 0.3s ease, border-color 0.3s ease;" style-hover="background: #FFFFFF; border-color: rgba(26,23,20,0.42);">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px;">
+              <span style="font-size: 12px; letter-spacing: 0.06em; color: #7A7168;">{{ p.year }}</span>
+              <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #4A423B; border: 1px solid rgba(26,23,20,0.28); border-radius: 999px; padding: 5px 12px;">{{ p.tag }}</span>
+            </div>
+            <div style="aspect-ratio: 4 / 3; overflow: hidden; background: #EFEAF3; margin-bottom: 20px;">
+              <img src="{{ p.image }}" alt="{{ p.title }}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
+              <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 27px; line-height: 1.15; margin: 0;">{{ p.title }}</h3>
+              <p style="font-size: 15px; line-height: 1.55; color: #57504A; margin: 0; text-wrap: pretty;">{{ p.summary }}</p>
+              <span style="margin-top: auto; padding-top: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #1A1714; text-decoration: underline; text-underline-offset: 4px;">{{ t.viewCase }}</span>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre-mi" style="background: linear-gradient(160deg, #F2EEF6 0%, #FAF2E9 100%); padding: clamp(56px, 8vw, 104px) clamp(16px, 4vw, 40px);">
+    
+  <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(24px, 3vw, 40px); align-items: center; justify-items: center; justify-content: center;">
+      
+      <div style="position: relative; padding: 0 0 26px; width: 100%; max-width: 300px; margin: 0 auto;">
+        <div onClick="{{ nudgeTopFlower }}" role="button" tabindex="0" aria-label="Mover ilustración superior" style="position: absolute; z-index: 2; top: -58px; left: -54px; width: 168px; height: 154px; cursor: pointer; transform: {{ topFlowerTransform }}; transition: transform 0.45s cubic-bezier(.22,1,.36,1);">
+          <img src="assets/dunar-flower.png" alt="Ilustración botánica" style="width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none;">
+        </div>
+        <img src="assets/belen.png" alt="Belén Briones" style="position: relative; z-index: 1; width: 100%; max-width: 300px; border-radius: 24px; display: block; box-shadow: 0 20px 46px rgba(26,23,20,0.16); background: #FFFFFF; height: auto;">
+        <div onClick="{{ nudgeBottomFlower }}" role="button" tabindex="0" aria-label="Mover flor inferior" style="position: absolute; z-index: 2; right: -58px; bottom: -34px; width: 164px; height: 142px; cursor: pointer; transform: {{ bottomFlowerTransform }}; transition: transform 0.45s cubic-bezier(.22,1,.36,1);">
+          <img src="assets/geranio.png" alt="Flores rosadas" style="width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none;">
+        </div>
+      </div><div style="width: 100%; max-width: 560px;">
+        <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #B4527C; margin-bottom: 12px;">{{ t.aboutKicker }}</span>
+        <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.08; margin: 0 0 18px;">{{ t.aboutTitle }}</h2>
+        <p style="font-size: 17px; line-height: 1.68; color: #4A423B; margin: 0 0 16px; max-width: 54ch; text-wrap: pretty;">{{ t.aboutP1 }}</p>
+        <p style="font-size: 17px; line-height: 1.68; color: #4A423B; margin: 0 0 30px; max-width: 54ch; text-wrap: pretty;">{{ t.aboutP2 }}</p>
+
+        <h3 style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #57504A; margin: 0 0 14px;">{{ t.toolsTitle }}</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <sc-for list="{{ tools }}" as="tool" hint-placeholder-count="6">
+            <span style="background: #FFFFFF; border: 1px solid rgba(26,23,20,0.08); color: #2F2924; font-size: 14px; font-weight: 500; padding: 9px 16px; border-radius: 999px; white-space: nowrap;">{{ tool }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div></section>
+
+  <section id="cv" style="padding: clamp(52px, 7vw, 92px) clamp(16px, 4vw, 40px); background: #FBF7F2;">
+    <div style="max-width: 1000px; margin: 0 auto; background: #1A1714; border-radius: 28px; padding: clamp(32px, 5vw, 58px); display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; align-items: center;">
+      <div>
+        <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; color: #FBF7F2; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; margin: 0 0 12px;">{{ t.cvTitle }}</h2>
+        <p style="font-size: 16px; line-height: 1.6; color: rgba(251,247,242,0.78); margin: 0; max-width: 44ch; text-wrap: pretty;">{{ t.cvText }}</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-start;">
+        <a href="assets/CV-Belen-Briones.pdf" target="_blank" rel="noopener" style="background: #F0C6D6; color: #3A1728; font-weight: 600; font-size: 16px; padding: 15px 28px; border-radius: 999px;" style-hover="background: #FFFFFF;">{{ t.cvBtn }}</a>
+        <a href="mailto:Belen.brionesibeas@gmail.com" style="border: 1px solid rgba(251,247,242,0.35); color: #FBF7F2; font-weight: 600; font-size: 16px; padding: 15px 26px; border-radius: 999px;" style-hover="background: rgba(251,247,242,0.1);">{{ t.contact }}</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: linear-gradient(105deg, #E3E9F8 0%, #F9F0E6 100%); padding: clamp(46px, 6vw, 76px) clamp(16px, 4vw, 40px) 34px;">
+    <div style="max-width: 1240px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 34px; align-items: start;">
+        <div>
+          <p style="font-family: 'Instrument Serif', serif; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; margin: 0 0 10px;">{{ t.footTitle }}</p>
+          <p style="font-size: 16px; line-height: 1.6; color: #57504A; margin: 0; max-width: 34ch; text-wrap: pretty;">{{ t.footText }}</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #7A7168;">{{ t.footContact }}</span>
+          <a href="mailto:Belen.brionesibeas@gmail.com" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">Belen.brionesibeas@gmail.com</a>
+          <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">WhatsApp · +56 9 5719 0304</a>
+          <a href="https://www.linkedin.com/in/belen-briones-uxui/" target="_blank" rel="noopener" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">LinkedIn · belen-briones-uxui</a>
+          <span style="font-size: 17px; color: #57504A;">Valparaíso, Chile</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #7A7168;">{{ t.footNav }}</span>
+          <a href="#inicio" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">{{ t.navHome }}</a>
+          <a href="#proyectos" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">{{ t.navWork }}</a>
+          <a href="#sobre-mi" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">{{ t.navAbout }}</a>
+          <a href="#cv" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">CV</a>
+        </div>
+      </div>
+      <div style="margin-top: 44px; padding-top: 20px; border-top: 1px solid rgba(26,23,20,0.12); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between;">
+        <span style="font-size: 14px; color: #7A7168;">© 2026 Belén Briones Ibeas</span>
+        <span style="font-size: 14px; color: #7A7168;">{{ t.footMade }}</span>
+      </div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ close }}" style="position: fixed; inset: 0; z-index: 100; background: rgba(20,17,14,0.55); backdrop-filter: blur(6px); overflow-y: auto; padding: clamp(12px, 4vw, 48px) clamp(8px, 3vw, 32px); display: flex; justify-content: center; align-items: flex-start;">
+      <div onClick="{{ stop }}" style="position: relative; width: min(100%, 940px); background: #FBF7F2; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.35); animation: fadeUp 0.35s ease both;">
+        <button type="button" onClick="{{ close }}" aria-label="Cerrar" style="position: absolute; top: 16px; right: 16px; z-index: 2; width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(251,247,242,0.9); color: #1A1714; font-size: 20px; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.18);" style-hover="background: #FFFFFF;">✕</button>
+        <div style="aspect-ratio: 16 / 10; background: #EFEAF3; overflow: hidden;">
+          <img src="{{ current.image }}" alt="{{ current.title }}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </div>
+        <div style="padding: clamp(24px, 4vw, 46px);">
+          <span style="display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #B4527C; margin-bottom: 10px;">{{ current.tag }}</span>
+          <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(30px, 4.6vw, 48px); line-height: 1.08; margin: 0 0 10px;">{{ current.title }}</h2>
+          <p style="font-size: 18px; line-height: 1.6; color: #4A423B; margin: 0 0 26px; max-width: 62ch; text-wrap: pretty;">{{ current.summary }}</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; padding: 22px 0; border-top: 1px solid rgba(26,23,20,0.12); border-bottom: 1px solid rgba(26,23,20,0.12); margin-bottom: 30px;">
+            <div>
+              <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7A7168; margin-bottom: 6px;">{{ t.metaRole }}</span>
+              <span style="font-size: 16px; color: #1A1714;">{{ current.role }}</span>
+            </div>
+            <div>
+              <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7A7168; margin-bottom: 6px;">{{ t.metaYear }}</span>
+              <span style="font-size: 16px; color: #1A1714;">{{ current.year }}</span>
+            </div>
+            <div>
+              <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7A7168; margin-bottom: 6px;">{{ t.metaTools }}</span>
+              <span style="font-size: 16px; color: #1A1714;">{{ current.tools }}</span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 26px;">
+            <sc-for list="{{ current.blocks }}" as="b" hint-placeholder-count="3">
+              <div>
+                <h3 style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #B4527C; margin: 0 0 8px;">{{ b.heading }}</h3>
+                <p style="font-size: 17px; line-height: 1.7; color: #4A423B; margin: 0; max-width: 68ch; text-wrap: pretty;">{{ b.body }}</p>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px;">
+            <button type="button" onClick="{{ prevCase }}" style="border: 1px solid rgba(26,23,20,0.2); background: transparent; color: #1A1714; font-family: inherit; font-size: 15px; font-weight: 600; padding: 13px 22px; border-radius: 999px; cursor: pointer;" style-hover="border-color: #B4527C; color: #B4527C;">← {{ t.prevCase }}</button>
+            <button type="button" onClick="{{ nextCase }}" style="border: 1px solid rgba(26,23,20,0.2); background: transparent; color: #1A1714; font-family: inherit; font-size: 15px; font-weight: 600; padding: 13px 22px; border-radius: 999px; cursor: pointer;" style-hover="border-color: #B4527C; color: #B4527C;">{{ t.nextCase }} →</button>
+            <a href="mailto:Belen.brionesibeas@gmail.com" style="background: #1A1714; color: #FBF7F2; font-size: 15px; font-weight: 600; padding: 14px 24px; border-radius: 999px;" style-hover="background: #B4527C;">{{ t.askMore }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const DATA = [
+  {
+    image: "assets/vedimaq.png",
+    page: "Proyecto Vedimaq.dc.html",
+    year: "2026",
+    tools: "Figma · Wix Studio",
+    es: { tag: "Diseño web · UX/UI", title: "Vedimaq", role: "Diseño UX/UI y maquetación",
+      summary: "Sitio de venta, arriendo y mantenimiento de maquinaria pesada, pensado para cotizar rápido desde el celular o la obra.",
+      blocks: [
+        { heading: "El desafío", body: "Vedimaq necesitaba una web que ordenara cuatro servicios muy distintos —vender, comprar, arrendar y mantener maquinaria— sin que el usuario se perdiera en el camino ni tuviera que llamar por teléfono para entender qué ofrecen." },
+        { heading: "Proceso", body: "Mapeé los cuatro flujos y los reduje a un solo punto de entrada en el hero: cuatro accesos directos que filtran el catálogo. Trabajé una paleta oscura con amarillo de seguridad, tomada del mundo de la maquinaria, y una tipografía de alto contraste para leer bien en exterior." },
+        { heading: "Resultado", body: "Una home que responde la pregunta principal en los primeros tres segundos, con promesa de respuesta en menos de 30 minutos, catálogo filtrable y versión móvil pensada para usarse a una mano en terreno." }
+      ] },
+    en: { tag: "Web design · UX/UI", title: "Vedimaq", role: "UX/UI design & build",
+      summary: "A site for selling, renting and servicing heavy machinery, built for quick quotes from a phone on site.",
+      blocks: [
+        { heading: "Challenge", body: "Vedimaq needed a site that organised four very different services —selling, buying, renting and servicing— without losing the user or forcing a phone call to understand the offer." },
+        { heading: "Process", body: "I mapped the four flows into a single entry point in the hero: four shortcuts that filter the catalogue. A dark palette with safety yellow, borrowed from the machinery world, plus high-contrast type that holds up outdoors." },
+        { heading: "Outcome", body: "A home page that answers the main question in three seconds, with a under-30-minute reply promise, a filterable catalogue and a mobile version made for one-handed use in the field." }
+      ] }
+  },
+  {
+    image: "assets/pix.png",
+    page: "Proyecto PiX.dc.html",
+    year: "2025",
+    tools: "HTML · CSS · Figma · InDesign",
+    es: { tag: "Proyecto de título · Web + editorial", title: "PiX · Partituras de Interacción", role: "Diseño de interacción y editorial",
+      summary: "Metodología para leer y organizar el trabajo en equipo como una partitura. Un sitio en HTML y un libro impreso.",
+      blocks: [
+        { heading: "El desafío", body: "Las Partituras de Interacción existían como teoría dentro de la escuela, pero no como algo que un equipo pudiera tomar y usar el lunes siguiente. Faltaba traducir el método a una herramienta concreta." },
+        { heading: "Proceso", body: "Junto a Kamila Llerena diseñamos dos soportes que se sostienen entre sí: el libro «Partituras de Interacción en acción» reúne teoría, casos y aprendizajes; el sitio web abre el método con plantillas para empezar tu propia partitura en Figma o en Midi." },
+        { heading: "Resultado", body: "Un sistema gráfico de triángulos y ritmo que funciona igual en la página impresa y en pantalla, con una web de cuatro puertas de entrada: qué es PiX, dos formas de empezar y la descarga del libro." }
+      ] },
+    en: { tag: "Thesis project · Web + editorial", title: "PiX · Interaction Scores", role: "Interaction & editorial design",
+      summary: "A method for reading and organising teamwork like a musical score. An HTML site plus a printed book.",
+      blocks: [
+        { heading: "Challenge", body: "Interaction Scores existed as theory inside the school, but not as something a team could pick up and use next Monday. The method needed translating into a real tool." },
+        { heading: "Process", body: "With Kamila Llerena we designed two supports that hold each other up: the book gathers theory, cases and lessons; the website opens the method with templates to start your own score in Figma or Midi." },
+        { heading: "Outcome", body: "A graphic system of triangles and rhythm that works the same in print and on screen, with a site built around four doors: what PiX is, two ways to start, and the book download." }
+      ] }
+  },
+  {
+    image: "assets/savia.png",
+    page: "Proyecto Savia.dc.html",
+    year: "2026",
+    tools: "Figma · Diplomado UX/UI",
+    es: { tag: "App móvil · UX/UI", title: "Savia", role: "UX/UI · Research y prototipo",
+      summary: "App de cosmética natural: home, ficha de producto y carrito, con una rutina de cuidado paso a paso.",
+      blocks: [
+        { heading: "El desafío", body: "En cosmética natural la gente compra el producto pero no sabe cómo usarlo: el orden, los tiempos, cuánto aplicar. La duda aparece después de la compra y ahí se pierde la fidelidad." },
+        { heading: "Proceso", body: "Diseñé el flujo completo de compra —home, ficha de producto y carrito— y sumé «Mi rutina», una sección con pasos, tiempos y avance visible. En la ficha trabajé el selector de tamaño y el paso a paso del carrito para reducir el abandono." },
+        { heading: "Resultado", body: "Un prototipo de tres pantallas clave con lenguaje botánico, tipografía serif cálida y verdes profundos; el carrito muestra cuánto falta para el envío gratis y permite guardar para después." }
+      ] },
+    en: { tag: "Mobile app · UX/UI", title: "Savia", role: "UX/UI · Research & prototype",
+      summary: "A natural cosmetics app: home, product page and cart, with a step-by-step care routine.",
+      blocks: [
+        { heading: "Challenge", body: "In natural cosmetics people buy the product but don't know how to use it: the order, the timing, how much to apply. The doubt shows up after purchase, and that's where loyalty is lost." },
+        { heading: "Process", body: "I designed the full purchase flow —home, product page and cart— and added \"My routine\": steps, timings and visible progress. On the product page I focused on the size selector and the cart's step-by-step to reduce drop-off." },
+        { heading: "Outcome", body: "A prototype of three key screens with botanical language, warm serif type and deep greens; the cart shows how far you are from free shipping and lets you save for later." }
+      ] }
+  },
+  {
+    image: "assets/trinidad.png",
+    page: "Proyecto Trinidad Ureta.dc.html",
+    year: "2026",
+    tools: "Figma · Diseño responsivo",
+    es: { tag: "Web responsiva · UX/UI", title: "Trinidad Ureta · Asesoría de imagen", role: "Diseño UX/UI responsivo",
+      summary: "Sitio de asesoría de imagen personal, del escritorio al móvil, con la consultoría como recorrido y no como catálogo.",
+      blocks: [
+        { heading: "El desafío", body: "La asesoría de imagen se vende por confianza. El sitio tenía que sonar cercano y contenido a la vez, y convertir sin presionar, en un público que llega desde Instagram y casi siempre desde el teléfono." },
+        { heading: "Proceso", body: "Escribí la home como una conversación —«Empecemos por ti»— y ordené la oferta en un solo recorrido con un llamado por pantalla. Paleta verde bosque y arena, tipografía serif con itálicas para las frases que hacen clic emocional." },
+        { heading: "Resultado", body: "Una web responsiva donde la versión móvil no es una reducción sino la principal: mismo ritmo de lectura, botón de inicio siempre a mano y carrito para los servicios." }
+      ] },
+    en: { tag: "Responsive web · UX/UI", title: "Trinidad Ureta · Image consulting", role: "Responsive UX/UI design",
+      summary: "A personal image consulting site, desktop to mobile, built as a journey rather than a catalogue.",
+      blocks: [
+        { heading: "Challenge", body: "Image consulting sells on trust. The site had to feel close and restrained at once, converting without pressure, for an audience arriving from Instagram and almost always on a phone." },
+        { heading: "Process", body: "I wrote the home page as a conversation —\"Let's start with you\"— and arranged the offer into one journey with a single call per screen. Forest green and sand, serif type with italics for the lines that land emotionally." },
+        { heading: "Outcome", body: "A responsive site where mobile isn't a reduction but the main version: same reading rhythm, start button always within reach, and a cart for the services." }
+      ] }
+  },
+  {
+    image: "assets/dunar.png",
+    page: "Proyecto Dunas de Concon.dc.html",
+    year: "2024",
+    tools: "Illustrator · InDesign · Impresión",
+    es: { tag: "Diseño gráfico · Infografía", title: "Campo Dunar de Concón", role: "Diseño de información e impresión",
+      summary: "Infografía desplegable sobre la fauna de insectos del campo dunar y sus relaciones ecológicas.",
+      blocks: [
+        { heading: "El desafío", body: "Mostrar relaciones ecológicas entre insectos, plantas y suelo del campo dunar de Concón sin convertir la lámina en un texto científico ilegible para el visitante." },
+        { heading: "Proceso", body: "Trabajé el despliegue como un recorrido por la duna: al abrirse, el papel repite el corte del paisaje —arena, sombra y mar— y cada insecto aparece en su franja. Impresión sobre cartulina kraft para que el material hable del lugar." },
+        { heading: "Resultado", body: "Un desplegable con estuche que funciona como pieza de divulgación y como objeto: se lee por partes o se abre completo como un mapa de la duna." }
+      ] },
+    en: { tag: "Graphic design · Infographic", title: "Concón Dune Field", role: "Information & print design",
+      summary: "A fold-out infographic on the insect fauna of the dune field and its ecological relationships.",
+      blocks: [
+        { heading: "Challenge", body: "Showing ecological relationships between insects, plants and soil in the Concón dune field without turning the sheet into an unreadable scientific text." },
+        { heading: "Process", body: "The fold-out works as a walk through the dune: as it opens, the paper repeats the cut of the landscape —sand, shadow and sea— and each insect appears in its band. Printed on kraft board so the material speaks of the place." },
+        { heading: "Outcome", body: "A fold-out with its own case that works both as outreach material and as an object: read in parts, or opened fully as a map of the dune." }
+      ] }
+  },
+  {
+    image: "assets/ubicate-hero.png",
+    page: "Proyecto Ubicate.dc.html",
+    year: "2025",
+    tools: "Figma · Research en terreno · Prototipo",
+    es: { tag: "UX/UI · App móvil", title: "App Ubícate", role: "UX/UI e investigación",
+      summary: "Transporte público de la V Región: información en tiempo real, pago con QR y una capa de seguridad comunitaria.",
+      blocks: [
+        { heading: "El desafío", body: "Licitaciones vencidas, pago en efectivo y cero información confiable: la incertidumbre genera ansiedad y exclusión en quienes dependen de la micro todos los días." },
+        { heading: "Proceso", body: "Investigación en terreno con AEIOU, entrevistas y encuestas, user personas, mapas de empatía y journey maps de un estudiante y una adulta mayor." },
+        { heading: "Resultado", body: "Una app que centraliza recorridos y frecuencias, digitaliza el pago con QR y suma alertas y ubicación compartida entre amigos." }
+      ] },
+    en: { tag: "UX/UI · Mobile app", title: "Ubícate App", role: "UX/UI and research",
+      summary: "Public transport in Chile's V Region: live information, QR payment and a community safety layer.",
+      blocks: [
+        { heading: "Challenge", body: "Expired concessions, cash-only fares and no reliable information: the uncertainty creates anxiety and exclusion for people who depend on the bus every day." },
+        { heading: "Process", body: "Field research with AEIOU, interviews and surveys, user personas, empathy maps and journey maps for a student and an older adult." },
+        { heading: "Outcome", body: "An app that centralises routes and frequencies, digitises fare payment with QR and adds alerts and location sharing between friends." }
+      ] }
+  }
+];
+
+const COPY = {
+  es: {
+    navHome: "Inicio", navWork: "Proyectos", navAbout: "Sobre mí", contact: "Contactar", langLabel: "EN",
+    heroRole: "Diseñadora de Interacción & UX/UI",
+    heroText: "Creo experiencias digitales claras, empáticas e intuitivas, combinando sensibilidad visual e investigación centrada en las personas.",
+    heroCta: "Explorar proyectos",
+    workKicker: "Portafolio", workTitle: "Proyectos",
+    workText: "Seis trabajos entre interacción, web, app y gráfica impresa. Haz clic en cualquiera para ver el caso completo.",
+    viewCase: "Ver caso",
+    aboutKicker: "Sobre mí", aboutTitle: "Hola, soy Belén",
+    aboutP1: "Soy Belén Briones, Diseñadora de Interacción formada en la PUCV. Me apasiona crear experiencias digitales que unan empatía, curiosidad y creatividad visual.",
+    aboutP2: "Cuando no estoy en Figma, me encuentras jugando tenis, haciendo yoga o en casa tejiendo crochet y pintando con acuarelas. ¿Mi punto débil? La comida asiática y una buena lasaña.",
+    toolsTitle: "Herramientas",
+    cvTitle: "¿Trabajamos juntas?", cvText: "Estoy abierta a proyectos de UX/UI, diseño de interacción y gráfica. Escríbeme o descarga mi CV.",
+    cvBtn: "Abrir mi CV",
+    footTitle: "Conversemos", footText: "Cuéntame qué estás construyendo y vemos cómo hacerlo más claro.",
+    footContact: "Contacto", footNav: "Navegación", footMade: "Diseñado y desarrollado por Belén Briones",
+    metaRole: "Rol", metaYear: "Año", metaTools: "Herramientas",
+    prevCase: "Anterior", nextCase: "Siguiente", askMore: "Preguntar por este proyecto"
+  },
+  en: {
+    navHome: "Home", navWork: "Work", navAbout: "About", contact: "Get in touch", langLabel: "ES",
+    heroRole: "Interaction & UX/UI Designer",
+    heroText: "I build clear, empathetic and intuitive digital experiences, combining visual sensibility with people-centred research.",
+    heroCta: "Explore projects",
+    workKicker: "Portfolio", workTitle: "Selected work",
+    workText: "Six projects across interaction, web, app and print. Click any one to read the full case.",
+    viewCase: "View case",
+    aboutKicker: "About", aboutTitle: "Hi, I'm Belén",
+    aboutP1: "I'm Belén Briones, an Interaction Designer trained at PUCV. I love creating digital experiences that bring together empathy, curiosity and visual creativity.",
+    aboutP2: "When I'm not in Figma, you'll find me playing tennis, doing yoga, or at home crocheting and painting with watercolours. My weakness? Asian food and a good lasagna.",
+    toolsTitle: "Tools",
+    cvTitle: "Let's work together", cvText: "I'm open to UX/UI, interaction and graphic design projects. Write to me or download my CV.",
+    cvBtn: "Open my CV",
+    footTitle: "Let's talk", footText: "Tell me what you're building and let's make it clearer together.",
+    footContact: "Contact", footNav: "Navigation", footMade: "Designed and built by Belén Briones",
+    metaRole: "Role", metaYear: "Year", metaTools: "Tools",
+    prevCase: "Previous", nextCase: "Next", askMore: "Ask about this project"
+  }
+};
+
+class Component extends DCLogic {
+  state = { lang: (function () { try { return localStorage.getItem("bb-lang") === "en" ? "en" : "es"; } catch (e) { return "es"; } })(), open: null, index: 0, heroPaused: false, heroFlowerMoved: false, topFlowerMoved: false, bottomFlowerMoved: false };
+
+  setLang(lang) {
+    try { localStorage.setItem("bb-lang", lang); } catch (e) {}
+    this.setState({ lang: lang });
+  }
+
+  componentDidMount() {
+    this.paused = false;
+    this.timer = setInterval(() => {
+      if (this.paused || this.state.open !== null) return;
+      this.step(1);
+    }, 4200);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+
+  getTrack() { return document.getElementById("carousel-track"); }
+
+  cardWidth() {
+    const el = this.getTrack();
+    if (!el || !el.firstElementChild) return 380;
+    const card = el.firstElementChild.getBoundingClientRect().width;
+    return card + 22;
+  }
+  step(dir) {
+    const el = this.getTrack();
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth - 4;
+    const atStart = el.scrollLeft <= 2;
+    const atEnd = el.scrollLeft >= max - 2;
+    let target;
+    if (dir > 0) target = atEnd ? 0 : Math.min(el.scrollLeft + this.cardWidth(), max);
+    else target = atStart ? max : Math.max(el.scrollLeft - this.cardWidth(), 0);
+    this.animateTo(el, target);
+  }
+  animateTo(el, target) {
+    const max = Math.max(0, el.scrollWidth - el.clientWidth);
+    const nextPosition = Math.max(0, Math.min(target, max));
+    el.scrollLeft = nextPosition;
+  }
+
+  renderVals() {
+    const lang = this.state.lang;
+    const t = COPY[lang];
+    const heroPlay = this.state.heroPaused ? "paused" : "running";
+    const topFlowerTransform = this.state.topFlowerMoved ? "translateY(8px) rotate(3deg)" : "translateY(0) rotate(-4deg)";
+    const bottomFlowerTransform = this.state.bottomFlowerMoved ? "translateY(-7px) rotate(-3deg)" : "translateY(0) rotate(4deg)";
+    const heroFlowerTransform = this.state.heroFlowerMoved ? "translateY(8px) rotate(4deg)" : "translateY(0) rotate(-4deg)";
+    const toggleHero = () => this.setState(s => ({ heroPaused: !s.heroPaused }));
+    const projects = DATA.map((p, i) => Object.assign({
+      image: p.image, year: p.year, tools: p.tools,
+      open: () => { if (p.page) { window.location.href = p.page; } else { this.setState({ open: i }); } }
+    }, p[lang]));
+    const openIdx = this.state.open;
+    return {
+      t,
+      projects: projects.slice(0, 4),
+      moreProjects: projects.slice(4),
+      moreTitle: lang === "es" ? "Más proyectos" : "More projects",
+      tools: ["Figma", "Adobe Illustrator", "InDesign", "Photoshop", "HTML & CSS", "Lovable", "Prototipado", "Research", "Ilustración"],
+      heroPlay,
+      topFlowerTransform,
+      bottomFlowerTransform,
+      heroFlowerTransform,
+      nudgeHeroFlower: () => this.setState({ heroFlowerMoved: !this.state.heroFlowerMoved }),
+      nudgeTopFlower: () => this.setState(s => ({ topFlowerMoved: !s.topFlowerMoved })),
+      nudgeBottomFlower: () => this.setState(s => ({ bottomFlowerMoved: !s.bottomFlowerMoved })),
+      toggleHero,
+      pause: () => { this.paused = true; },
+      resume: () => { this.paused = false; },
+      prev: () => this.step(-1),
+      next: () => this.step(1),
+      toggleLang: () => this.setLang(lang === "es" ? "en" : "es"),
+      isOpen: openIdx !== null,
+      current: openIdx !== null ? projects[openIdx] : {},
+      close: () => this.setState({ open: null }),
+      stop: (e) => e.stopPropagation(),
+      prevCase: () => this.setState({ open: (openIdx + DATA.length - 1) % DATA.length }),
+      nextCase: () => this.setState({ open: (openIdx + 1) % DATA.length })
+    };
+  }
+}
+</script>
+</body>
+</html>
