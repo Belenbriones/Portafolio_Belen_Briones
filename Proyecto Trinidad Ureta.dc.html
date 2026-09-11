@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="./assets/favicon-bb.svg">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -22,6 +21,7 @@
   @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 </style>
 <script src="./i18n.js"></script>
+<script src="./nav.js"></script>
 </helmet>
 
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1F2B23"></rect><text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-family="Georgia, serif" font-size="30" fill="#C9B084">TU</text></svg></template>
@@ -52,7 +52,7 @@
       </div>
       <h1 style="font-family: 'Instrument Serif', serif; font-weight: 400; color: #FFFFFF; font-size: clamp(36px, 6vw, 66px); line-height: 1.04; margin: 0 0 18px; max-width: 23ch;">Your best version, curated</h1>
       <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.65; color: #C4CFC2; margin: 0 0 34px; max-width: 62ch; text-wrap: pretty;">Plataforma editorial para una asesora de imagen: un frente de marca que convierte, un portal privado donde cada clienta consulta su diagnóstico de color y morfología, y un backoffice para operar agenda y fichas técnicas. Un solo producto para tres audiencias.</p>
-      <img src="uploads/tablet_asesoria.png" alt="Vitrina de consultorías de Trinidad Ureta en tablet" style="width: 100%; max-width: 900px; display: block; height: auto;">
+      <img src="assets/trinidad-hero.png" alt="Sitio de Trinidad Ureta en escritorio y móvil" style="width: 624px; max-width: 900px; display: block; height: 468px; border-radius: 16px">
     </div>
   </section>
 
@@ -107,7 +107,7 @@
         <div>
           <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(28px, 4vw, 44px); line-height: 1.1; margin: 0 0 18px; color: #22281F;">Ritmo editorial, no ritmo de e-commerce</h2>
           <p style="font-size: 17px; line-height: 1.7; color: #4E4A3F; margin: 0 0 18px; text-wrap: pretty;">El manifiesto de marca «la imagen no se trata de cambiar quién eres, sino de volver a ti» define el tono de toda la interfaz: pausas largas, una sola idea por pantalla y fotografía curada en lugar de catálogos.</p>
-          <p style="font-size: 17px; line-height: 1.7; color: #4E4A3F; margin: 0 0 24px; text-wrap: pretty;"><strong>Editor's Note</strong> en títulos aporta la voz editorial; <strong>Area Normal</strong>, geométrica y funcional, sostiene formularios, tablas y datos del panel. La misma jerarquía funciona para un manifiesto y para una ficha técnica.</p>
+          <p style="font-size: 17px; line-height: 1.7; color: #4E4A3F; margin: 0 0 24px; text-wrap: pretty;">Las tipografías oficiales de la marca son <strong>Editor's Note</strong> en títulos, que aporta la voz editorial, y <strong>Area Normal</strong>, geométrica y funcional, para formularios, tablas y datos del panel. Al ser licenciadas, en el build se sustituyeron por equivalentes de código abierto: <strong>Cormorant Garamond</strong> reemplaza a Editor's Note y <strong>DM Sans</strong> a Area Normal, manteniendo el mismo contraste serif / palo seco. La misma jerarquía funciona para un manifiesto y para una ficha técnica.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 10px;">
             <span style="background: #F3EFE7; color: #33372C; font-size: 13px; font-weight: 600; padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(51,55,44,0.18);">Greige / crema</span>
             <span style="background: #7F8C6E; color: #FFFFFF; font-size: 13px; font-weight: 600; padding: 10px 14px; border-radius: 8px;">Dusty olive</span>
@@ -129,9 +129,9 @@
       <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(28px, 4vw, 44px); line-height: 1.1; margin: 0 0 16px; max-width: 26ch;">Dos productos en un solo sistema</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(24px, 4vw, 48px); align-items: center; margin-bottom: clamp(26px, 4vw, 44px);">
         <p style="font-size: 17px; line-height: 1.7; color: #4A423B; max-width: 60ch; margin: 0; text-wrap: pretty;">El flujo de la clienta busca conversión y retorno: descubre los planes en la home, elige, crea cuenta, paga y agenda. El flujo interno busca control: confirmar, bloquear horas y publicar la ficha de diagnóstico. Ambos comparten componentes, pero no compiten por atención.</p>
-        <figure style="margin: 0; justify-self: end; width: 100%; max-width: 520px;">
-          <img src="uploads/tablet_asesoria.png" alt="Vitrina de consultorías de Trinidad Ureta en tablet" style="width: 100%; max-width: 520px; display: block;">
-          <figcaption style="margin-top: 10px; font-size: 15px; line-height: 1.6; color: #7A7168; max-width: 34ch;">La vitrina de consultorías reúne los planes, sus precios y el acceso directo a agendar en una sola experiencia.</figcaption>
+        <figure style="margin: 0; justify-self: center;">
+          <img src="assets/trinidad-hero-devices.png" alt="Home de Trinidad Ureta en notebook y móvil" style="width: 100%; max-width: 460px; display: block;">
+          <figcaption style="margin-top: 10px; font-size: 15px; line-height: 1.6; color: #7A7168; max-width: 34ch;">La misma home en escritorio y móvil: el hero mantiene foto, promesa y las dos acciones en ambos formatos.</figcaption>
         </figure>
       </div>
       <figure style="margin: 0 0 clamp(26px, 4vw, 44px);">
