@@ -32,7 +32,7 @@
     .mobile-nav { flex-basis: 100%; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0 4px; }
     .mobile-nav a { display: block; padding: 14px 4px; border-top: 1px solid rgba(26,23,20,0.10); color: #4A423B; font-size: 16px; font-weight: 500; }
     .mobile-nav a:last-child { border-bottom: 1px solid rgba(26,23,20,0.10); }
-    .mobile-nav[aria-hidden="false"] { display: flex; }
+    .mobile-nav[data-open="true"] { display: flex; }
   }
 </style>
 </helmet>
@@ -54,7 +54,7 @@
         <button type="button" onClick="{{ toggleLang }}" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; padding: 8px 12px; border-radius: 999px; cursor: pointer;" style-hover="border-color: #B4527C; color: #B4527C;">{{ t.langLabel }}</button>
         <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #4A1F35; font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 999px;" style-hover="background: #E5A9C1;">{{ t.contact }}</a>
       </div>
-      <div id="mobile-navigation" class="mobile-nav" aria-hidden="{{ mobileMenuOpen ? 'false' : 'true' }}">
+      <div id="mobile-navigation" class="mobile-nav" data-open="{{ mobileMenuOpen }}">
         <a href="#inicio" onClick="{{ closeMobileMenu }}">{{ t.navHome }}</a>
         <a href="#proyectos" onClick="{{ closeMobileMenu }}">{{ t.navWork }}</a>
         <a href="#sobre-mi" onClick="{{ closeMobileMenu }}">{{ t.navAbout }}</a>
