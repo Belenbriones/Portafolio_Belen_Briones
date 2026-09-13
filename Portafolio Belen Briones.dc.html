@@ -128,6 +128,7 @@
           </div>
           <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
             <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 27px; line-height: 1.15; margin: 0;">{{ p.title }}</h3>
+            <span style="font-size: 14px; font-weight: 600; color: #B4527C; margin: 4px 0 0;">🎯 {{ p.role }}</span>
             <span style="font-size: 13px; font-weight: 600; color: #B4527C;">{{ p.kindIcon }} {{ p.kind }}</span>
             <p style="font-size: 15px; line-height: 1.55; color: #57504A; margin: 0; text-wrap: pretty;">{{ p.summary }}</p>
             <span style="margin-top: auto; padding-top: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #1A1714; text-decoration: underline; text-underline-offset: 4px;">{{ t.viewCase }}</span>
@@ -150,6 +151,7 @@
             </div>
             <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
               <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 27px; line-height: 1.15; margin: 0;">{{ p.title }}</h3>
+              <span style="font-size: 14px; font-weight: 600; color: #B4527C; margin: 4px 0 0;">🎯 {{ p.role }}</span>
               <span style="font-size: 13px; font-weight: 600; color: #B4527C;">{{ p.kindIcon }} {{ p.kind }}</span>
               <p style="font-size: 15px; line-height: 1.55; color: #57504A; margin: 0; text-wrap: pretty;">{{ p.summary }}</p>
               <span style="margin-top: auto; padding-top: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #1A1714; text-decoration: underline; text-underline-offset: 4px;">{{ t.viewCase }}</span>
@@ -277,6 +279,7 @@
 const DATA = [
   {
     image: "assets/vedimaq.png",
+    role: "Design System Lead",
     kind: "Design system + UI kit (B2B)", kindIcon: "💻",
     page: "Proyecto Vedimaq.dc.html",
     year: "2026",
@@ -298,6 +301,7 @@ const DATA = [
   },
   {
     image: "assets/pix.png",
+    role: "Interaction Designer",
     kind: "Branding + design system (web)", kindIcon: "🎨",
     page: "Proyecto PiX.dc.html",
     year: "2025",
@@ -319,6 +323,7 @@ const DATA = [
   },
   {
     image: "assets/savia.png",
+    role: "UX/UI Designer",
     kind: "UX + prototipado Figma (mobile)", kindIcon: "📱",
     page: "Proyecto Savia.dc.html",
     year: "2026",
@@ -340,6 +345,7 @@ const DATA = [
   },
   {
     image: "assets/trinidad.png",
+    role: "Brand Designer",
     kind: "Web design + CMS (portfolio)", kindIcon: "🖥",
     page: "Proyecto Trinidad Ureta.dc.html",
     year: "2026",
@@ -361,6 +367,7 @@ const DATA = [
   },
   {
     image: "assets/dunar.png",
+    role: "Graphic Designer",
     kind: "Infografía + diseño editorial", kindIcon: "🎨",
     page: "Proyecto Dunas de Concon.dc.html",
     year: "2024",
@@ -382,6 +389,7 @@ const DATA = [
   },
   {
     image: "assets/ubicate-hero.png",
+    role: "UX/UI Designer",
     kind: "UX research + prototipo (mobile)", kindIcon: "📱",
     page: "Proyecto Ubicate.dc.html",
     year: "2025",
@@ -539,7 +547,7 @@ class Component extends DCLogic {
     const activeNavAbout = this.state.activeSection === "sobre-mi" ? "active" : "";
     const activeNavCv = this.state.activeSection === "cv" ? "active" : "";
     const projects = DATA.map((p, i) => Object.assign({
-      image: p.image, year: p.year, tools: p.tools, kind: p.kind, kindIcon: p.kindIcon,
+      image: p.image, year: p.year, tools: p.tools, role: p.role, kind: p.kind, kindIcon: p.kindIcon,
       open: () => { if (p.page) { window.location.href = p.page; } else { this.setState({ open: i }); } }
     }, p[lang]));
     const openIdx = this.state.open;
