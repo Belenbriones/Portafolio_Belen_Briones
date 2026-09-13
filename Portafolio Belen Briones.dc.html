@@ -128,7 +128,7 @@
           </div>
           <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
             <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 27px; line-height: 1.15; margin: 0;">{{ p.title }}</h3>
-            <span style="font-size: 14px; font-weight: 600; color: #B4527C; margin: 4px 0 0;">🎯 {{ p.role }}</span>
+            <span style="font-size: 14px; font-weight: 600; color: #B4527C; margin: 4px 0 0;">{{ p.role }}</span>
             <span style="font-size: 13px; font-weight: 600; color: #B4527C;">{{ p.kind }}</span>
             <p style="font-size: 15px; line-height: 1.55; color: #57504A; margin: 0; text-wrap: pretty;">{{ p.summary }}</p>
             <span style="margin-top: auto; padding-top: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #1A1714; text-decoration: underline; text-underline-offset: 4px;">{{ t.viewCase }}</span>
@@ -151,7 +151,7 @@
             </div>
             <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
               <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 27px; line-height: 1.15; margin: 0;">{{ p.title }}</h3>
-              <span style="font-size: 14px; font-weight: 600; color: #B4527C; margin: 4px 0 0;">🎯 {{ p.role }}</span>
+              <span style="font-size: 14px; font-weight: 600; color: #B4527C; margin: 4px 0 0;">{{ p.role }}</span>
               <span style="font-size: 13px; font-weight: 600; color: #B4527C;">{{ p.kind }}</span>
               <p style="font-size: 15px; line-height: 1.55; color: #57504A; margin: 0; text-wrap: pretty;">{{ p.summary }}</p>
               <span style="margin-top: auto; padding-top: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #1A1714; text-decoration: underline; text-underline-offset: 4px;">{{ t.viewCase }}</span>
@@ -509,11 +509,12 @@ class Component extends DCLogic {
   step(dir) {
     const el = this.getTrack();
     if (!el) return;
-    const max = el.scrollWidth - el.clientWidth - 4;
+    const max = Math.max(0, el.scrollWidth - el.clientWidth);
+    if (!max) return;
     let target = el.scrollLeft + dir * this.cardWidth();
     if (target > max) target = 0;
     if (target < 0) target = max;
-    this.animateTo(el, target);
+    el.scrollTo({ left: target, behavior: "smooth" });
   }
   animateTo(el, target) {
     if (this.anim) clearInterval(this.anim);
