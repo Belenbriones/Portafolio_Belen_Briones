@@ -23,6 +23,10 @@
   @keyframes rouletteL { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes rouletteR { from { transform: translateX(-50%); } to { transform: translateX(0); } }
   @media (prefers-reduced-motion: reduce) { [data-dev] { animation: none !important; } }
+  .home-nav-link { position: relative; font-weight: 500; }
+  .home-nav-link.active { font-weight: 700; }
+  .home-nav-link.active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -7px; height: 2px; background: currentColor; }
+  .mobile-nav-link.active::after { bottom: 5px; }
 </style>
 </helmet>
 
@@ -36,10 +40,10 @@
       </a>
       <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
         <div style="display: flex; align-items: center; gap: clamp(12px, 2vw, 28px);">
-          <a href="#inicio" style="color: #4A423B; font-size: 15px; font-weight: 500;">{{ t.navHome }}</a>
-          <a href="#proyectos" style="color: #4A423B; font-size: 15px; font-weight: 500;">{{ t.navWork }}</a>
-          <a href="#sobre-mi" style="color: #4A423B; font-size: 15px; font-weight: 500;">{{ t.navAbout }}</a>
-          <a href="#cv" style="color: #4A423B; font-size: 15px; font-weight: 500;">CV</a>
+          <a href="#inicio" class="home-nav-link {{ activeNavHome }}" style="color: #4A423B; font-size: 15px;">{{ t.navHome }}</a>
+          <a href="#proyectos" class="home-nav-link {{ activeNavWork }}" style="color: #4A423B; font-size: 15px;">{{ t.navWork }}</a>
+          <a href="#sobre-mi" class="home-nav-link {{ activeNavAbout }}" style="color: #4A423B; font-size: 15px;">{{ t.navAbout }}</a>
+          <a href="#cv" class="home-nav-link {{ activeNavCv }}" style="color: #4A423B; font-size: 15px;">CV</a>
           <button type="button" onClick="{{ toggleLang }}" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; padding: 8px 12px; border-radius: 999px; cursor: pointer;" style-hover="border-color: #B4527C; color: #B4527C;">{{ t.langLabel }}</button>
           <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #4A1F35; font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 999px;" style-hover="background: #E5A9C1;">{{ t.contact }}</a>
         </div>
@@ -50,10 +54,10 @@
     </nav>
     <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
       <div style="border-top: 1px solid rgba(26,23,20,0.10); background: rgba(255,253,251,0.96); padding: 12px clamp(16px, 4vw, 40px) 20px; display: flex; flex-direction: column; gap: 4px;">
-        <a href="#inicio" onClick="{{ closeMenu }}" style="color: #1A1714; font-size: 17px; font-weight: 500; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navHome }}</a>
-        <a href="#proyectos" onClick="{{ closeMenu }}" style="color: #1A1714; font-size: 17px; font-weight: 500; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navWork }}</a>
-        <a href="#sobre-mi" onClick="{{ closeMenu }}" style="color: #1A1714; font-size: 17px; font-weight: 500; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navAbout }}</a>
-        <a href="#cv" onClick="{{ closeMenu }}" style="color: #1A1714; font-size: 17px; font-weight: 500; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">CV</a>
+        <a href="#inicio" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavHome }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navHome }}</a>
+        <a href="#proyectos" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavWork }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navWork }}</a>
+        <a href="#sobre-mi" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavAbout }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navAbout }}</a>
+        <a href="#cv" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavCv }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">CV</a>
         <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
           <button type="button" onClick="{{ toggleLang }}" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; padding: 13px 18px; border-radius: 999px; cursor: pointer;">{{ t.langLabel }}</button>
           <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #4A1F35; font-size: 15px; font-weight: 600; padding: 13px 24px; border-radius: 999px;">{{ t.contact }}</a>
@@ -432,7 +436,7 @@ const COPY = {
 };
 
 class Component extends DCLogic {
-  state = { lang: (function () { try { return localStorage.getItem("bb-lang") === "en" ? "en" : "es"; } catch (e) { return "es"; } })(), open: null, index: 0, heroPaused: false, isMobile: false, menuOpen: false };
+  state = { lang: (function () { try { return localStorage.getItem("bb-lang") === "en" ? "en" : "es"; } catch (e) { return "es"; } })(), open: null, index: 0, heroPaused: false, isMobile: false, menuOpen: false, activeSection: "inicio" };
 
   setLang(lang) {
     try { localStorage.setItem("bb-lang", lang); } catch (e) {}
@@ -444,16 +448,30 @@ class Component extends DCLogic {
     if (m !== this.state.isMobile) this.setState({ isMobile: m, menuOpen: false });
   };
 
+  updateActiveSection = () => {
+    const header = document.querySelector("header");
+    const offset = (header ? header.getBoundingClientRect().height : 0) + 32;
+    const sections = ["inicio", "proyectos", "sobre-mi", "cv"];
+    let activeSection = "inicio";
+    sections.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section && section.getBoundingClientRect().top <= offset) activeSection = id;
+    });
+    if (activeSection !== this.state.activeSection) this.setState({ activeSection });
+  };
+
   componentDidMount() {
     this.handleResize();
     window.addEventListener("resize", this.handleResize);
+    this.updateActiveSection();
+    window.addEventListener("scroll", this.updateActiveSection, { passive: true });
     this.paused = false;
     this.timer = setInterval(() => {
       if (this.paused || this.state.open !== null) return;
       this.step(1);
     }, 4200);
   }
-  componentWillUnmount() { clearInterval(this.timer); }
+  componentWillUnmount() { clearInterval(this.timer); window.removeEventListener("resize", this.handleResize); window.removeEventListener("scroll", this.updateActiveSection); }
 
   getTrack() { return document.getElementById("carousel-track"); }
 
@@ -499,6 +517,10 @@ class Component extends DCLogic {
     const t = COPY[lang];
     const heroPlay = this.state.heroPaused ? "paused" : "running";
     const toggleHero = () => this.setState(s => ({ heroPaused: !s.heroPaused }));
+    const activeNavHome = this.state.activeSection === "inicio" ? "active" : "";
+    const activeNavWork = this.state.activeSection === "proyectos" ? "active" : "";
+    const activeNavAbout = this.state.activeSection === "sobre-mi" ? "active" : "";
+    const activeNavCv = this.state.activeSection === "cv" ? "active" : "";
     const projects = DATA.map((p, i) => Object.assign({
       image: p.image, year: p.year, tools: p.tools,
       open: () => { if (p.page) { window.location.href = p.page; } else { this.setState({ open: i }); } }
@@ -512,6 +534,10 @@ class Component extends DCLogic {
       tools: ["Figma", "Adobe Illustrator", "InDesign", "Photoshop", "HTML & CSS", "Lovable", "Prototipado", "Research", "Ilustración"],
       heroPlay,
       toggleHero,
+      activeNavHome,
+      activeNavWork,
+      activeNavAbout,
+      activeNavCv,
       isMobile: this.state.isMobile,
       isDesktop: !this.state.isMobile,
       menuOpen: this.state.menuOpen,
