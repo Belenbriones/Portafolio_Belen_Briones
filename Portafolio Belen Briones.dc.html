@@ -23,9 +23,10 @@
   @keyframes rouletteL { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes rouletteR { from { transform: translateX(-50%); } to { transform: translateX(0); } }
   @media (prefers-reduced-motion: reduce) { [data-dev] { animation: none !important; } }
-  .home-nav-link { position: relative; font-weight: 500; }
-  .home-nav-link.active { font-weight: 700; }
-  .home-nav-link.active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -7px; height: 2px; background: currentColor; }
+  .home-nav-link { position: relative; font-weight: 500; transition: color 0.3s ease, font-weight 0.3s ease; }
+  .home-nav-link::after { content: ''; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px; background: currentColor; transition: right 0.3s ease; }
+  .home-nav-link.active { font-weight: 700; color: #B4527C !important; }
+  .home-nav-link.active::after { right: 0; }
   .mobile-nav-link.active::after { bottom: 5px; }
 </style>
 </helmet>
@@ -40,10 +41,10 @@
       </a>
       <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
         <div style="display: flex; align-items: center; gap: clamp(12px, 2vw, 28px);">
-          <a href="#inicio" class="home-nav-link {{ activeNavHome }}" style="color: #4A423B; font-size: 15px;">{{ t.navHome }}</a>
-          <a href="#proyectos" class="home-nav-link {{ activeNavWork }}" style="color: #4A423B; font-size: 15px;">{{ t.navWork }}</a>
-          <a href="#sobre-mi" class="home-nav-link {{ activeNavAbout }}" style="color: #4A423B; font-size: 15px;">{{ t.navAbout }}</a>
-          <a href="#cv" class="home-nav-link {{ activeNavCv }}" style="color: #4A423B; font-size: 15px;">CV</a>
+          <a href="#inicio" data-nav="inicio" class="home-nav-link {{ activeNavHome }}" style="color: #4A423B; font-size: 15px;">{{ t.navHome }}</a>
+          <a href="#proyectos" data-nav="proyectos" class="home-nav-link {{ activeNavWork }}" style="color: #4A423B; font-size: 15px;">{{ t.navWork }}</a>
+          <a href="#sobre-mi" data-nav="sobre-mi" class="home-nav-link {{ activeNavAbout }}" style="color: #4A423B; font-size: 15px;">{{ t.navAbout }}</a>
+          <a href="#cv" data-nav="cv" class="home-nav-link {{ activeNavCv }}" style="color: #4A423B; font-size: 15px;">CV</a>
           <button type="button" onClick="{{ toggleLang }}" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; padding: 8px 12px; border-radius: 999px; cursor: pointer;" style-hover="border-color: #B4527C; color: #B4527C;">{{ t.langLabel }}</button>
           <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #4A1F35; font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 999px;" style-hover="background: #E5A9C1;">{{ t.contact }}</a>
         </div>
@@ -54,10 +55,10 @@
     </nav>
     <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
       <div style="border-top: 1px solid rgba(26,23,20,0.10); background: rgba(255,253,251,0.96); padding: 12px clamp(16px, 4vw, 40px) 20px; display: flex; flex-direction: column; gap: 4px;">
-        <a href="#inicio" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavHome }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navHome }}</a>
-        <a href="#proyectos" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavWork }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navWork }}</a>
-        <a href="#sobre-mi" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavAbout }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navAbout }}</a>
-        <a href="#cv" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavCv }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">CV</a>
+        <a href="#inicio" data-nav="inicio" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavHome }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navHome }}</a>
+        <a href="#proyectos" data-nav="proyectos" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavWork }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navWork }}</a>
+        <a href="#sobre-mi" data-nav="sobre-mi" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavAbout }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navAbout }}</a>
+        <a href="#cv" data-nav="cv" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavCv }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">CV</a>
         <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
           <button type="button" onClick="{{ toggleLang }}" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; padding: 13px 18px; border-radius: 999px; cursor: pointer;">{{ t.langLabel }}</button>
           <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #4A1F35; font-size: 15px; font-weight: 600; padding: 13px 24px; border-radius: 999px;">{{ t.contact }}</a>
@@ -78,24 +79,11 @@
         </div>
       </div>
 
-      <div data-dev="" onClick="{{ toggleHero }}" title="Clic para pausar" style="cursor: pointer; position: relative; min-height: clamp(400px, 46vw, 560px); overflow: hidden; animation: fadeUp 0.9s ease both; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);">
-        <div style="position: absolute; left: -14%; top: 50%; width: 128%; transform: translateY(-50%) rotate(-16deg); display: flex; flex-direction: column; gap: clamp(18px, 2.4vw, 34px);">
-        <div style="display: flex; align-items: center; gap: clamp(18px, 2.6vw, 34px); width: max-content; animation: rouletteL 26s linear infinite; animation-play-state: {{ heroPlay }};">
-          <img src="assets/dev-savia.png" alt="Ficha de producto de la app Savia" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-          <img src="assets/dev-pix-laptop.png" alt="Libro web PiX en notebook" style="height: 140px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-          <img src="assets/dev-vedimaq.png" alt="Catálogo Vedimaq en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-          <img src="assets/dev-savia.png" alt="Ficha de producto de la app Savia" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-          <img src="assets/dev-pix-laptop.png" alt="Libro web PiX en notebook" style="height: 140px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-          <img src="assets/dev-vedimaq.png" alt="Catálogo Vedimaq en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-        </div>
-        <div style="display: flex; align-items: center; gap: clamp(18px, 2.6vw, 34px); width: max-content; animation: rouletteR 32s linear infinite; animation-play-state: {{ heroPlay }};">
-          <img src="assets/dev-trinidad-tablet.png" alt="Web de Trinidad Ureta en tablet" style="height: 150px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-          <img src="assets/dev-pix-tablet.png" alt="Libro PiX en tablet" style="height: 130px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-          <img src="assets/trinidad-estudio.png" alt="Sección estudio de Trinidad Ureta en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-          <img src="assets/dev-trinidad-tablet.png" alt="Web de Trinidad Ureta en tablet" style="height: 150px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-          <img src="assets/dev-pix-tablet.png" alt="Libro PiX en tablet" style="height: 130px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-          <img src="assets/trinidad-estudio.png" alt="Sección estudio de Trinidad Ureta en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-        </div>
+      <div data-dev="" onClick="{{ toggleHero }}" title="Clic para pausar" style="cursor: pointer; min-height: clamp(300px, 38vw, 460px); display: flex; align-items: center; justify-content: center; overflow: hidden; animation: fadeUp 0.9s ease both; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%);">
+        <div style="display: flex; align-items: center; justify-content: center; gap: clamp(12px, 2.4vw, 28px); width: max-content; transform: rotate(-6deg);">
+          <img src="assets/dev-savia.png" alt="Ficha de producto de la app Savia" style="height: clamp(130px, 15vw, 190px); width: auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-pix-laptop.png" alt="Libro web PiX en notebook" style="height: clamp(110px, 13vw, 165px); width: auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-trinidad-tablet.png" alt="Web de Trinidad Ureta en tablet" style="height: clamp(130px, 15vw, 190px); width: auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
         </div>
       </div>
     </div>
@@ -126,6 +114,7 @@
           </div>
           <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
             <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 27px; line-height: 1.15; margin: 0;">{{ p.title }}</h3>
+            <span style="font-size: 13px; font-weight: 600; color: #B4527C;">{{ p.kindIcon }} {{ p.kind }}</span>
             <p style="font-size: 15px; line-height: 1.55; color: #57504A; margin: 0; text-wrap: pretty;">{{ p.summary }}</p>
             <span style="margin-top: auto; padding-top: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #1A1714; text-decoration: underline; text-underline-offset: 4px;">{{ t.viewCase }}</span>
           </div>
@@ -147,6 +136,7 @@
             </div>
             <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
               <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 27px; line-height: 1.15; margin: 0;">{{ p.title }}</h3>
+              <span style="font-size: 13px; font-weight: 600; color: #B4527C;">{{ p.kindIcon }} {{ p.kind }}</span>
               <p style="font-size: 15px; line-height: 1.55; color: #57504A; margin: 0; text-wrap: pretty;">{{ p.summary }}</p>
               <span style="margin-top: auto; padding-top: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #1A1714; text-decoration: underline; text-underline-offset: 4px;">{{ t.viewCase }}</span>
             </div>
@@ -274,6 +264,7 @@
 const DATA = [
   {
     image: "assets/vedimaq.png",
+    kind: "Design system + UI kit (B2B)", kindIcon: "💻",
     page: "Proyecto Vedimaq.dc.html",
     year: "2026",
     tools: "Figma · Wix Studio",
@@ -294,6 +285,7 @@ const DATA = [
   },
   {
     image: "assets/pix.png",
+    kind: "Branding + design system (web)", kindIcon: "🎨",
     page: "Proyecto PiX.dc.html",
     year: "2025",
     tools: "HTML · CSS · Figma · InDesign",
@@ -314,6 +306,7 @@ const DATA = [
   },
   {
     image: "assets/savia.png",
+    kind: "UX + prototipado Figma (mobile)", kindIcon: "📱",
     page: "Proyecto Savia.dc.html",
     year: "2026",
     tools: "Figma · Diplomado UX/UI",
@@ -334,6 +327,7 @@ const DATA = [
   },
   {
     image: "assets/trinidad.png",
+    kind: "Web design + CMS (portfolio)", kindIcon: "🖥",
     page: "Proyecto Trinidad Ureta.dc.html",
     year: "2026",
     tools: "Figma · Diseño responsivo",
@@ -354,6 +348,7 @@ const DATA = [
   },
   {
     image: "assets/dunar.png",
+    kind: "Infografía + diseño editorial", kindIcon: "🎨",
     page: "Proyecto Dunas de Concon.dc.html",
     year: "2024",
     tools: "Illustrator · InDesign · Impresión",
@@ -374,6 +369,7 @@ const DATA = [
   },
   {
     image: "assets/ubicate-hero.png",
+    kind: "UX research + prototipo (mobile)", kindIcon: "📱",
     page: "Proyecto Ubicate.dc.html",
     year: "2025",
     tools: "Figma · Research en terreno · Prototipo",
@@ -449,6 +445,14 @@ class Component extends DCLogic {
   };
 
   updateActiveSection = () => {
+    if (this.activeSectionFrame) return;
+    this.activeSectionFrame = requestAnimationFrame(() => {
+      this.activeSectionFrame = null;
+      this.measureActiveSection();
+    });
+  };
+
+  measureActiveSection = () => {
     const header = document.querySelector("header");
     const offset = (header ? header.getBoundingClientRect().height : 0) + 32;
     const sections = ["inicio", "proyectos", "sobre-mi", "cv"];
@@ -471,7 +475,7 @@ class Component extends DCLogic {
       this.step(1);
     }, 4200);
   }
-  componentWillUnmount() { clearInterval(this.timer); window.removeEventListener("resize", this.handleResize); window.removeEventListener("scroll", this.updateActiveSection); }
+  componentWillUnmount() { clearInterval(this.timer); window.removeEventListener("resize", this.handleResize); window.removeEventListener("scroll", this.updateActiveSection); if (this.activeSectionFrame) cancelAnimationFrame(this.activeSectionFrame); }
 
   getTrack() { return document.getElementById("carousel-track"); }
 
@@ -522,7 +526,7 @@ class Component extends DCLogic {
     const activeNavAbout = this.state.activeSection === "sobre-mi" ? "active" : "";
     const activeNavCv = this.state.activeSection === "cv" ? "active" : "";
     const projects = DATA.map((p, i) => Object.assign({
-      image: p.image, year: p.year, tools: p.tools,
+      image: p.image, year: p.year, tools: p.tools, kind: p.kind, kindIcon: p.kindIcon,
       open: () => { if (p.page) { window.location.href = p.page; } else { this.setState({ open: i }); } }
     }, p[lang]));
     const openIdx = this.state.open;
