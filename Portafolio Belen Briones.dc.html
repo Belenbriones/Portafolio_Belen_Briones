@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="./assets/favicon-bb.svg">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -16,19 +15,21 @@
   html { scroll-behavior: smooth; }
   body { margin: 0; background: #FBF7F2; color: #1A1714; font-family: 'Hanken Grotesk', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   * { box-sizing: border-box; }
-  a { color: #B4527C; text-decoration: none; }
-  a:hover { color: #8E3A5E; }
+  a { color: #1A1714; text-decoration: none; }
+  a:hover { color: #1A1714; }
   ::selection { background: #F0C6D6; }
   @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
   @keyframes rouletteL { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes rouletteR { from { transform: translateX(-50%); } to { transform: translateX(0); } }
   @media (prefers-reduced-motion: reduce) { [data-dev] { animation: none !important; } }
-  .home-nav-link { position: relative; font-weight: 500; transition: color 0.3s ease, font-weight 0.3s ease; }
-  .home-nav-link::after { content: ''; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px; background: currentColor; transition: right 0.3s ease; }
-  .home-nav-link.active { font-weight: 700; color: #B4527C !important; }
-  .home-nav-link.active::after { right: 0; }
-  .mobile-nav-link.active::after { bottom: 5px; }
+  .bb-burger { display: none; }
+  .bb-desktop-nav { display: flex; }
+  @media (max-width: 859px) {
+    .bb-desktop-nav { display: none; }
+    .bb-burger { display: flex; }
+  }
+  @media (min-width: 860px) { .bb-panel { display: none !important; } }
 </style>
 </helmet>
 
@@ -40,29 +41,25 @@
         <img src="assets/belen.png" alt="Belén Briones" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; background: #E6E9F7; box-shadow: 0 2px 10px rgba(26,23,20,0.12);">
         <span style="font-family: 'Instrument Serif', serif; font-size: 20px; color: #1A1714; letter-spacing: 0.01em;">Belén Briones</span>
       </a>
-      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
-        <div style="display: flex; align-items: center; gap: clamp(12px, 2vw, 28px);">
-          <a href="#inicio" data-nav="inicio" class="home-nav-link {{ activeNavHome }}" style="color: #4A423B; font-size: 15px;">{{ t.navHome }}</a>
-          <a href="#proyectos" data-nav="proyectos" class="home-nav-link {{ activeNavWork }}" style="color: #4A423B; font-size: 15px;">{{ t.navWork }}</a>
-          <a href="#sobre-mi" data-nav="sobre-mi" class="home-nav-link {{ activeNavAbout }}" style="color: #4A423B; font-size: 15px;">{{ t.navAbout }}</a>
-          <a href="#cv" data-nav="cv" class="home-nav-link {{ activeNavCv }}" style="color: #4A423B; font-size: 15px;">CV</a>
-          <button type="button" onClick="{{ toggleLang }}" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; padding: 8px 12px; border-radius: 999px; cursor: pointer;" style-hover="border-color: #B4527C; color: #B4527C;">{{ t.langLabel }}</button>
-          <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #4A1F35; font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 999px;" style-hover="background: #E5A9C1;">{{ t.contact }}</a>
+        <div class="bb-desktop-nav" style="align-items: center; gap: clamp(12px, 2vw, 28px);">
+          <a href="#inicio" style="font-size: 15px; padding-bottom: 4px; transition: color 0.25s ease, border-color 0.25s ease; font-weight: {{ wInicio }}; color: {{ navInicio }}; border-bottom: 2px solid {{ barInicio }};">{{ t.navHome }}</a>
+          <a href="#proyectos" style="font-size: 15px; padding-bottom: 4px; transition: color 0.25s ease, border-color 0.25s ease; font-weight: {{ wWork }}; color: {{ navWork }}; border-bottom: 2px solid {{ barWork }};">{{ t.navWork }}</a>
+          <a href="#sobre-mi" style="font-size: 15px; padding-bottom: 4px; transition: color 0.25s ease, border-color 0.25s ease; font-weight: {{ wAbout }}; color: {{ navAbout }}; border-bottom: 2px solid {{ barAbout }};">{{ t.navAbout }}</a>
+          <a href="#cv" style="font-size: 15px; padding-bottom: 4px; transition: color 0.25s ease, border-color 0.25s ease; font-weight: {{ wCv }}; color: {{ navCv }}; border-bottom: 2px solid {{ barCv }};">CV</a>
+          <button type="button" onClick="{{ toggleLang }}" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; padding: 8px 12px; border-radius: 15px; cursor: pointer;" style-hover="border-color: #1A1714; color: #1A1714;">{{ t.langLabel }}</button>
+          <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #1A1714; font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 15px;" style-hover="background: #E5A9C1;">{{ t.contact }}</a>
         </div>
-      </sc-if>
-      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
-        <button type="button" onClick="{{ toggleMenu }}" aria-label="Menú" aria-expanded="{{ menuOpen }}" style="width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(26,23,20,0.18); background: rgba(255,255,255,0.5); color: #1A1714; font-size: 19px; line-height: 1; border-radius: 50%; cursor: pointer;" style-hover="border-color: #B4527C; color: #B4527C;">{{ burgerIcon }}</button>
-      </sc-if>
+        <button class="bb-burger" type="button" onClick="{{ toggleMenu }}" aria-label="Menú" aria-expanded="{{ menuOpen }}" style="width: 46px; height: 46px; align-items: center; justify-content: center; border: 1px solid rgba(26,23,20,0.18); background: rgba(255,255,255,0.5); color: #1A1714; font-size: 19px; line-height: 1; border-radius: 50%; cursor: pointer;" style-hover="border-color: #1A1714; color: #1A1714;">{{ burgerIcon }}</button>
     </nav>
     <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-      <div style="border-top: 1px solid rgba(26,23,20,0.10); background: rgba(255,253,251,0.96); padding: 12px clamp(16px, 4vw, 40px) 20px; display: flex; flex-direction: column; gap: 4px;">
-        <a href="#inicio" data-nav="inicio" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavHome }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navHome }}</a>
-        <a href="#proyectos" data-nav="proyectos" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavWork }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navWork }}</a>
-        <a href="#sobre-mi" data-nav="sobre-mi" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavAbout }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navAbout }}</a>
-        <a href="#cv" data-nav="cv" onClick="{{ closeMenu }}" class="home-nav-link mobile-nav-link {{ activeNavCv }}" style="color: #1A1714; font-size: 17px; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">CV</a>
+      <div class="bb-panel" style="border-top: 1px solid rgba(26,23,20,0.10); background: rgba(255,253,251,0.96); padding: 12px clamp(16px, 4vw, 40px) 20px; display: flex; flex-direction: column; gap: 4px;">
+        <a href="#inicio" onClick="{{ closeMenu }}" style="color: #1A1714; font-size: 17px; font-weight: 500; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navHome }}</a>
+        <a href="#proyectos" onClick="{{ closeMenu }}" style="color: #1A1714; font-size: 17px; font-weight: 500; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navWork }}</a>
+        <a href="#sobre-mi" onClick="{{ closeMenu }}" style="color: #1A1714; font-size: 17px; font-weight: 500; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">{{ t.navAbout }}</a>
+        <a href="#cv" onClick="{{ closeMenu }}" style="color: #1A1714; font-size: 17px; font-weight: 500; padding: 13px 0; border-bottom: 1px solid rgba(26,23,20,0.08);">CV</a>
         <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
-          <button type="button" onClick="{{ toggleLang }}" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; padding: 13px 18px; border-radius: 999px; cursor: pointer;">{{ t.langLabel }}</button>
-          <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #4A1F35; font-size: 15px; font-weight: 600; padding: 13px 24px; border-radius: 999px;">{{ t.contact }}</a>
+          <button type="button" onClick="{{ toggleLang }}" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; padding: 13px 18px; border-radius: 15px; cursor: pointer;">{{ t.langLabel }}</button>
+          <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #1A1714; font-size: 15px; font-weight: 600; padding: 13px 24px; border-radius: 15px;">{{ t.contact }}</a>
         </div>
       </div>
     </sc-if>
@@ -71,33 +68,36 @@
   <section id="inicio" style="position: relative; background: linear-gradient(105deg, #E3E9F8 0%, #EFEAF3 38%, #F9F0E6 72%, #FAF3EA 100%); padding: clamp(48px, 7vw, 96px) clamp(16px, 4vw, 40px) clamp(60px, 8vw, 110px);">
     <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(32px, 5vw, 64px); align-items: center;">
       <div style="animation: fadeUp 0.7s ease both;">
-        <p style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.08; margin: 0 0 4px; color: #2F2924;">{{ t.heroRole }}</p>
         
-        <h1 style="font-family: 'Hanken Grotesk', system-ui, sans-serif; font-weight: 300; font-style: normal; font-size: clamp(24px, 3.2vw, 40px); line-height: 1.12; margin: 0 0 22px; letter-spacing: -0.01em;"><i style="font-style: normal;">Belén Briones Ibeas</i></h1><p style="font-size: clamp(16px, 1.5vw, 19px); line-height: 1.6; color: #57504A; max-width: 46ch; margin: 0 0 34px; text-wrap: pretty;">{{ t.heroText }}</p>
+        <p style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.08; margin: 0 0 4px; color: #2F2924; width: 665px; height: 62px">{{ t.heroRole }}</p>
+        
+        <h1 style="font-family: 'Hanken Grotesk', system-ui, sans-serif; font-weight: 300; font-style: normal; font-size: clamp(24px, 3.2vw, 40px); line-height: 1.12; margin: 0 0 22px; letter-spacing: -0.01em;"><i style="font-style: normal;">Belén Briones Ibeas</i></h1>
+        <p style="font-size: clamp(15px, 1.4vw, 17px); font-weight: 600; letter-spacing: 0.02em; color: #1A1714; margin: 0 0 16px;">{{ t.heroSpecialty }}</p>
+        <p style="font-size: clamp(17px, 1.7vw, 21px); line-height: 1.6; color: #3A342E; max-width: 42ch; margin: 0 0 34px; text-wrap: pretty;">{{ t.heroText }}</p>
         <div style="display: flex; flex-wrap: wrap; gap: 14px;">
-          <a href="#proyectos" style="background: #FFFFFF; color: #1A1714; font-weight: 600; font-size: 17px; padding: 16px 32px; border-radius: 999px; box-shadow: 0 10px 26px rgba(26,23,20,0.10);" style-hover="box-shadow: 0 14px 34px rgba(26,23,20,0.18); transform: translateY(-2px);">{{ t.heroCta }}</a>
-          <a href="https://www.linkedin.com/in/belen-briones-uxui/" target="_blank" rel="noopener" style="border: 1px solid rgba(26,23,20,0.22); color: #1A1714; font-weight: 600; font-size: 17px; padding: 16px 30px; border-radius: 999px;" style-hover="background: rgba(255,255,255,0.6);">LinkedIn</a>
+          <a href="#proyectos" style="background: #FFFFFF; color: #1A1714; font-weight: 600; font-size: 17px; padding: 16px 32px; border-radius: 15px; box-shadow: 0 10px 26px rgba(26,23,20,0.10);" style-hover="box-shadow: 0 14px 34px rgba(26,23,20,0.18); transform: translateY(-2px);">{{ t.heroCta }} →</a>
+          <a href="https://www.linkedin.com/in/belen-briones-uxui/" target="_blank" rel="noopener" style="border: 1px solid rgba(26,23,20,0.22); color: #1A1714; font-weight: 600; font-size: 17px; padding: 16px 30px; border-radius: 15px;" style-hover="background: rgba(255,255,255,0.6);">LinkedIn</a>
         </div>
       </div>
 
       <div data-dev="" onClick="{{ toggleHero }}" title="Clic para pausar" style="cursor: pointer; position: relative; min-height: clamp(400px, 46vw, 560px); overflow: hidden; animation: fadeUp 0.9s ease both; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);">
         <div style="position: absolute; left: -14%; top: 50%; width: 128%; transform: translateY(-50%) rotate(-16deg); display: flex; flex-direction: column; gap: clamp(18px, 2.4vw, 34px);">
-          <div style="display: flex; align-items: center; gap: clamp(18px, 2.6vw, 34px); width: max-content; animation: rouletteL 26s linear infinite; animation-play-state: {{ heroPlay }};">
-            <img src="assets/dev-savia.png" alt="Ficha de producto de la app Savia" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-            <img src="assets/dev-pix-laptop.png" alt="Libro web PiX en notebook" style="height: 140px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-            <img src="assets/dev-vedimaq.png" alt="Catálogo Vedimaq en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-            <img src="assets/dev-savia.png" alt="Ficha de producto de la app Savia" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-            <img src="assets/dev-pix-laptop.png" alt="Libro web PiX en notebook" style="height: 140px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-            <img src="assets/dev-vedimaq.png" alt="Catálogo Vedimaq en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-          </div>
-          <div style="display: flex; align-items: center; gap: clamp(18px, 2.6vw, 34px); width: max-content; animation: rouletteR 32s linear infinite; animation-play-state: {{ heroPlay }};">
-            <img src="assets/dev-trinidad-tablet.png" alt="Web de Trinidad Ureta en tablet" style="height: 150px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-            <img src="assets/dev-pix-tablet.png" alt="Libro PiX en tablet" style="height: 130px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-            <img src="assets/trinidad-estudio.png" alt="Sección estudio de Trinidad Ureta en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-            <img src="assets/dev-trinidad-tablet.png" alt="Web de Trinidad Ureta en tablet" style="height: 150px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-            <img src="assets/dev-pix-tablet.png" alt="Libro PiX en tablet" style="height: 130px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-            <img src="assets/trinidad-estudio.png" alt="Sección estudio de Trinidad Ureta en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
-          </div>
+        <div style="display: flex; align-items: center; gap: clamp(18px, 2.6vw, 34px); width: max-content; animation: rouletteL 26s linear infinite; animation-play-state: {{ heroPlay }};">
+          <img src="assets/dev-savia.png" alt="Ficha de producto de la app Savia" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-pix-laptop.png" alt="Libro web PiX en notebook" style="height: 140px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-vedimaq.png" alt="Catálogo Vedimaq en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-savia.png" alt="Ficha de producto de la app Savia" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-pix-laptop.png" alt="Libro web PiX en notebook" style="height: 140px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-vedimaq.png" alt="Catálogo Vedimaq en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+        </div>
+        <div style="display: flex; align-items: center; gap: clamp(18px, 2.6vw, 34px); width: max-content; animation: rouletteR 32s linear infinite; animation-play-state: {{ heroPlay }};">
+          <img src="assets/dev-trinidad-tablet.png" alt="Web de Trinidad Ureta en tablet" style="height: 150px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-pix-tablet.png" alt="Libro PiX en tablet" style="height: 130px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/trinidad-estudio.png" alt="Sección estudio de Trinidad Ureta en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-trinidad-tablet.png" alt="Web de Trinidad Ureta en tablet" style="height: 150px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/dev-pix-tablet.png" alt="Libro PiX en tablet" style="height: 130px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+          <img src="assets/trinidad-estudio.png" alt="Sección estudio de Trinidad Ureta en móvil" style="height: 170px; width: auto; flex: 0 0 auto; display: block; filter: drop-shadow(0 16px 28px rgba(26,23,20,0.20));">
+        </div>
         </div>
       </div>
     </div>
@@ -106,30 +106,31 @@
   <section id="proyectos" style="padding: clamp(56px, 8vw, 104px) 0 clamp(48px, 7vw, 90px); background: #FBF7F2;">
     <div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap;">
       <div style="flex: 1 1 320px;">
-        <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #B4527C; margin-bottom: 12px;">{{ t.workKicker }}</span>
+        
         <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(34px, 5vw, 56px); line-height: 1.06; margin: 0 0 12px;">{{ t.workTitle }}</h2>
         <p style="font-size: 17px; line-height: 1.6; color: #57504A; max-width: 52ch; margin: 0; text-wrap: pretty;">{{ t.workText }}</p>
       </div>
       <div style="display: flex; gap: 10px;">
-        <button type="button" aria-label="Anterior" onClick="{{ prev }}" style="width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(26,23,20,0.20); background: #FFFFFF; color: #1A1714; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center;" style-hover="border-color: #B4527C; color: #B4527C;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 5 8 12 15 19"></polyline></svg></button>
-        <button type="button" aria-label="Siguiente" onClick="{{ next }}" style="width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(26,23,20,0.20); background: #FFFFFF; color: #1A1714; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center;" style-hover="border-color: #B4527C; color: #B4527C;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"></polyline></svg></button>
+        <button type="button" aria-label="Anterior" onClick="{{ prev }}" style="width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(26,23,20,0.20); background: #FFFFFF; color: #1A1714; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center;" style-hover="border-color: #1A1714; color: #1A1714;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 5 8 12 15 19"></polyline></svg></button>
+        <button type="button" aria-label="Siguiente" onClick="{{ next }}" style="width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(26,23,20,0.20); background: #FFFFFF; color: #1A1714; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center;" style-hover="border-color: #1A1714; color: #1A1714;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"></polyline></svg></button>
       </div>
     </div>
 
     <div id="carousel-track" onMouseEnter="{{ pause }}" onMouseLeave="{{ resume }}" onTouchStart="{{ pause }}" style="margin-top: clamp(28px, 4vw, 46px); display: flex; gap: clamp(16px, 2vw, 26px); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: clamp(16px, 4vw, 40px); padding: 6px clamp(16px, 4vw, 40px) 30px; scrollbar-width: none;">
       <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
-        <article onClick="{{ p.open }}" style="flex: 0 0 min(84vw, 400px); scroll-snap-align: start; background: #FBF7F2; border: 1px solid rgba(26,23,20,0.16); border-radius: 0; box-shadow: none; cursor: pointer; display: flex; flex-direction: column; padding: 22px 22px 26px; transition: background 0.3s ease, border-color 0.3s ease;" style-hover="background: #FFFFFF; border-color: rgba(26,23,20,0.42);">
+        <article onClick="{{ p.open }}" style="flex: 0 0 min(84vw, 400px); scroll-snap-align: start; background: #FBF7F2; border: 1px solid rgba(26,23,20,0.16); border-radius: 15px; box-shadow: none; cursor: pointer; display: flex; flex-direction: column; padding: 22px 22px 26px; transition: background 0.3s ease, border-color 0.3s ease;" style-hover="background: #FFFFFF; border-color: rgba(26,23,20,0.42);">
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px;">
             <span style="font-size: 12px; letter-spacing: 0.06em; color: #7A7168;">{{ p.year }}</span>
-            <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #4A423B; border: 1px solid rgba(26,23,20,0.28); border-radius: 999px; padding: 5px 12px;">{{ p.tag }}</span>
+            <span style="display: inline-flex; align-items: center; white-space: nowrap; flex: 0 0 auto; font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #4A423B; border: 1px solid rgba(26,23,20,0.28); border-radius: 15px; padding: 5px 12px;">{{ p.tag }}</span>
           </div>
-          <div style="aspect-ratio: 4 / 3; overflow: hidden; background: #EFEAF3; margin-bottom: 20px;">
-            <img src="{{ p.image }}" alt="{{ p.title }}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <div style="aspect-ratio: 4 / 3; overflow: hidden; border-radius: 8px; background: #EFEAF3; margin-bottom: 20px;">
+            <sc-if value="{{ p.image }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ p.image }}" alt="{{ p.title }}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            </sc-if>
           </div>
           <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
             <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 27px; line-height: 1.15; margin: 0;">{{ p.title }}</h3>
-            <span style="font-size: 14px; font-weight: 600; color: #B4527C; margin: 4px 0 0;">{{ p.role }}</span>
-            <span style="font-size: 13px; font-weight: 600; color: #B4527C;">{{ p.kind }}</span>
+            <span style="font-size: 14px; font-weight: 600; color: #57504A; letter-spacing: 0.01em;">{{ p.role }}</span>
             <p style="font-size: 15px; line-height: 1.55; color: #57504A; margin: 0; text-wrap: pretty;">{{ p.summary }}</p>
             <span style="margin-top: auto; padding-top: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #1A1714; text-decoration: underline; text-underline-offset: 4px;">{{ t.viewCase }}</span>
           </div>
@@ -138,21 +139,22 @@
     </div>
 
     <div style="max-width: 1240px; margin: clamp(10px, 2vw, 22px) auto 0; padding: 0 clamp(16px, 4vw, 40px);">
-      <h3 style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #B4527C; margin: 0 0 18px;">{{ moreTitle }}</h3>
+      <h3 style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #7A7168; margin: 0 0 18px;">{{ moreTitle }}</h3>
       <div style="display: flex; flex-wrap: wrap; gap: clamp(16px, 2vw, 26px);">
         <sc-for list="{{ moreProjects }}" as="p" hint-placeholder-count="2">
-          <article onClick="{{ p.open }}" style="flex: 0 0 min(84vw, 400px); background: #FBF7F2; border: 1px solid rgba(26,23,20,0.16); cursor: pointer; display: flex; flex-direction: column; padding: 22px 22px 26px; transition: background 0.3s ease, border-color 0.3s ease;" style-hover="background: #FFFFFF; border-color: rgba(26,23,20,0.42);">
+          <article onClick="{{ p.open }}" style="flex: 0 0 min(84vw, 400px); background: #FBF7F2; border-radius: 15px; border: 1px solid rgba(26,23,20,0.16); cursor: pointer; display: flex; flex-direction: column; padding: 22px 22px 26px; transition: background 0.3s ease, border-color 0.3s ease;" style-hover="background: #FFFFFF; border-color: rgba(26,23,20,0.42);">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px;">
               <span style="font-size: 12px; letter-spacing: 0.06em; color: #7A7168;">{{ p.year }}</span>
-              <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #4A423B; border: 1px solid rgba(26,23,20,0.28); border-radius: 999px; padding: 5px 12px;">{{ p.tag }}</span>
+              <span style="display: inline-flex; align-items: center; white-space: nowrap; flex: 0 0 auto; font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #4A423B; border: 1px solid rgba(26,23,20,0.28); border-radius: 15px; padding: 5px 12px;">{{ p.tag }}</span>
             </div>
-            <div style="aspect-ratio: 4 / 3; overflow: hidden; background: #EFEAF3; margin-bottom: 20px;">
-              <img src="{{ p.image }}" alt="{{ p.title }}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <div style="aspect-ratio: 4 / 3; overflow: hidden; border-radius: 8px; background: #EFEAF3; margin-bottom: 20px;">
+              <sc-if value="{{ p.image }}" hint-placeholder-val="{{ false }}">
+                <img src="{{ p.image }}" alt="{{ p.title }}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              </sc-if>
             </div>
             <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
               <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 27px; line-height: 1.15; margin: 0;">{{ p.title }}</h3>
-              <span style="font-size: 14px; font-weight: 600; color: #B4527C; margin: 4px 0 0;">{{ p.role }}</span>
-              <span style="font-size: 13px; font-weight: 600; color: #B4527C;">{{ p.kind }}</span>
+              <span style="font-size: 14px; font-weight: 600; color: #57504A; letter-spacing: 0.01em;">{{ p.role }}</span>
               <p style="font-size: 15px; line-height: 1.55; color: #57504A; margin: 0; text-wrap: pretty;">{{ p.summary }}</p>
               <span style="margin-top: auto; padding-top: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #1A1714; text-decoration: underline; text-underline-offset: 4px;">{{ t.viewCase }}</span>
             </div>
@@ -164,13 +166,13 @@
 
   <section id="sobre-mi" style="background: linear-gradient(160deg, #F2EEF6 0%, #FAF2E9 100%); padding: clamp(56px, 8vw, 104px) clamp(16px, 4vw, 40px);">
     
-  <div style="position: relative; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(24px, 3vw, 40px); align-items: center; justify-items: center; justify-content: center; padding-bottom: clamp(40px, 5vw, 70px);">
+  <div style="position: relative; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(24px, 3vw, 40px); align-items: center; justify-items: center; justify-content: center; padding-bottom: clamp(165px, 18vw, 215px); width: 1160px; height: 455px">
       
       <div style="position: relative; padding: 0 0 26px; width: 100%; max-width: 300px; margin: 0 auto;">
         
         
-      <img src="assets/belen.png" alt="Belén Briones" style="width: 100%; max-width: 300px; border-radius: 24px; display: block; box-shadow: 0 20px 46px rgba(26,23,20,0.16); background: #FFFFFF; height: auto;"><img src="assets/flor-geranio.png" alt="" aria-hidden="true" style="position: absolute; z-index: 0; width: 137px; opacity: 0.9; transform: rotate(-6deg); transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); left: 182px; top: 220px; height: 134px" style-hover="transform: rotate(2deg) translate(-10px, -14px) scale(1.04);"></div><div style="width: 100%; max-width: 560px;">
-        <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #B4527C; margin-bottom: 12px;">{{ t.aboutKicker }}</span>
+      <img src="assets/belen.png" alt="Belén Briones" style="width: 100%; max-width: 300px; border-radius: 15px; display: block; box-shadow: 0 20px 46px rgba(26,23,20,0.16); background: #FFFFFF; height: auto;"><img src="assets/flor-geranio.png" alt="" aria-hidden="true" style="position: absolute; z-index: 0; width: 142px; height: 136px; opacity: 0.9; transform: rotate(-6deg); transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); left: 212px; top: 240px" style-hover="transform: rotate(2deg) translate(-10px, -14px) scale(1.04);"></div><div style="width: 100%; max-width: 560px;">
+        
         <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.08; margin: 0 0 18px;">{{ t.aboutTitle }}</h2>
         <p style="font-size: 17px; line-height: 1.68; color: #4A423B; margin: 0 0 16px; max-width: 54ch; text-wrap: pretty;">{{ t.aboutP1 }}</p>
         <p style="font-size: 17px; line-height: 1.68; color: #4A423B; margin: 0 0 30px; max-width: 54ch; text-wrap: pretty;">{{ t.aboutP2 }}</p>
@@ -178,7 +180,7 @@
         <h3 style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #57504A; margin: 0 0 14px;">{{ t.toolsTitle }}</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 10px;">
           <sc-for list="{{ tools }}" as="tool" hint-placeholder-count="6">
-            <span style="background: #FFFFFF; border: 1px solid rgba(26,23,20,0.08); color: #2F2924; font-size: 14px; font-weight: 500; padding: 9px 16px; border-radius: 999px; white-space: nowrap;">{{ tool }}</span>
+            <span style="background: #FFFFFF; border: 1px solid rgba(26,23,20,0.08); color: #2F2924; font-size: 14px; font-weight: 500; padding: 9px 16px; border-radius: 15px; white-space: nowrap;">{{ tool }}</span>
           </sc-for>
         </div>
       </div>
@@ -187,14 +189,14 @@
     </div></section>
 
   <section id="cv" style="padding: clamp(52px, 7vw, 92px) clamp(16px, 4vw, 40px); background: #FBF7F2;">
-    <div style="max-width: 1000px; margin: 0 auto; background: #1A1714; border-radius: 28px; padding: clamp(32px, 5vw, 58px); display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; align-items: center;">
+    <div style="max-width: 1000px; margin: 0 auto; background: #1A1714; border-radius: 15px; padding: clamp(32px, 5vw, 58px); display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; align-items: center;">
       <div>
         <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; color: #FBF7F2; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; margin: 0 0 12px;">{{ t.cvTitle }}</h2>
         <p style="font-size: 16px; line-height: 1.6; color: rgba(251,247,242,0.78); margin: 0; max-width: 44ch; text-wrap: pretty;">{{ t.cvText }}</p>
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-start;">
-        <a href="assets/CV-Belen-Briones.pdf" target="_blank" rel="noopener" style="background: #F0C6D6; color: #3A1728; font-weight: 600; font-size: 16px; padding: 15px 28px; border-radius: 999px;" style-hover="background: #FFFFFF;">{{ t.cvBtn }}</a>
-        <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="border: 1px solid rgba(251,247,242,0.35); color: #FBF7F2; font-weight: 600; font-size: 16px; padding: 15px 26px; border-radius: 999px;" style-hover="background: rgba(251,247,242,0.1);">{{ t.contact }}</a>
+        <a href="assets/CV-Belen-Briones.pdf" target="_blank" rel="noopener" style="background: #F0C6D6; color: #3A1728; font-weight: 600; font-size: 16px; padding: 15px 28px; border-radius: 15px;" style-hover="background: #FFFFFF;">{{ t.cvBtn }}</a>
+        <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="border: 1px solid rgba(251,247,242,0.35); color: #FBF7F2; font-weight: 600; font-size: 16px; padding: 15px 26px; border-radius: 15px;" style-hover="background: rgba(251,247,242,0.1);">{{ t.contact }}</a>
       </div>
     </div>
   </section>
@@ -208,16 +210,16 @@
         </div>
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #7A7168;">{{ t.footContact }}</span>
-          <a href="mailto:Belen.brionesibeas@gmail.com" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">Belen.brionesibeas@gmail.com</a>
-          <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">WhatsApp · +56 9 5719 0304</a>
-          <a href="https://www.linkedin.com/in/belen-briones-uxui/" target="_blank" rel="noopener" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">LinkedIn · belen-briones-uxui</a>
+          <a href="mailto:Belen.brionesibeas@gmail.com" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">Belen.brionesibeas@gmail.com</a>
+          <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">WhatsApp · +56 9 5719 0304</a>
+          <a href="https://www.linkedin.com/in/belen-briones-uxui/" target="_blank" rel="noopener" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">LinkedIn · belen-briones-uxui</a>
         </div>
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #7A7168;">{{ t.footNav }}</span>
-          <a href="#inicio" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">{{ t.navHome }}</a>
-          <a href="#proyectos" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">{{ t.navWork }}</a>
-          <a href="#sobre-mi" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">{{ t.navAbout }}</a>
-          <a href="#cv" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">CV</a>
+          <a href="#inicio" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">{{ t.navHome }}</a>
+          <a href="#proyectos" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">{{ t.navWork }}</a>
+          <a href="#sobre-mi" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">{{ t.navAbout }}</a>
+          <a href="#cv" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">CV</a>
         </div>
       </div>
       <div style="margin-top: 44px; padding-top: 20px; border-top: 1px solid rgba(26,23,20,0.12); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between;">
@@ -229,13 +231,13 @@
 
   <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ close }}" style="position: fixed; inset: 0; z-index: 100; background: rgba(20,17,14,0.55); backdrop-filter: blur(6px); overflow-y: auto; padding: clamp(12px, 4vw, 48px) clamp(8px, 3vw, 32px); display: flex; justify-content: center; align-items: flex-start;">
-      <div onClick="{{ stop }}" style="position: relative; width: min(100%, 940px); background: #FBF7F2; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.35); animation: fadeUp 0.35s ease both;">
+      <div onClick="{{ stop }}" style="position: relative; width: min(100%, 940px); background: #FBF7F2; border-radius: 15px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.35); animation: fadeUp 0.35s ease both;">
         <button type="button" onClick="{{ close }}" aria-label="Cerrar" style="position: absolute; top: 16px; right: 16px; z-index: 2; width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(251,247,242,0.9); color: #1A1714; font-size: 20px; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.18);" style-hover="background: #FFFFFF;">✕</button>
         <div style="aspect-ratio: 16 / 10; background: #EFEAF3; overflow: hidden;">
           <img src="{{ current.image }}" alt="{{ current.title }}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
         </div>
         <div style="padding: clamp(24px, 4vw, 46px);">
-          <span style="display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #B4527C; margin-bottom: 10px;">{{ current.tag }}</span>
+          <span style="display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #1A1714; margin-bottom: 10px;">{{ current.tag }}</span>
           <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(30px, 4.6vw, 48px); line-height: 1.08; margin: 0 0 10px;">{{ current.title }}</h2>
           <p style="font-size: 18px; line-height: 1.6; color: #4A423B; margin: 0 0 26px; max-width: 62ch; text-wrap: pretty;">{{ current.summary }}</p>
 
@@ -257,16 +259,16 @@
           <div style="display: flex; flex-direction: column; gap: 26px;">
             <sc-for list="{{ current.blocks }}" as="b" hint-placeholder-count="3">
               <div>
-                <h3 style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #B4527C; margin: 0 0 8px;">{{ b.heading }}</h3>
+                <h3 style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #1A1714; margin: 0 0 8px;">{{ b.heading }}</h3>
                 <p style="font-size: 17px; line-height: 1.7; color: #4A423B; margin: 0; max-width: 68ch; text-wrap: pretty;">{{ b.body }}</p>
               </div>
             </sc-for>
           </div>
 
           <div style="margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px;">
-            <button type="button" onClick="{{ prevCase }}" style="border: 1px solid rgba(26,23,20,0.2); background: transparent; color: #1A1714; font-family: inherit; font-size: 15px; font-weight: 600; padding: 13px 22px; border-radius: 999px; cursor: pointer;" style-hover="border-color: #B4527C; color: #B4527C;">← {{ t.prevCase }}</button>
-            <button type="button" onClick="{{ nextCase }}" style="border: 1px solid rgba(26,23,20,0.2); background: transparent; color: #1A1714; font-family: inherit; font-size: 15px; font-weight: 600; padding: 13px 22px; border-radius: 999px; cursor: pointer;" style-hover="border-color: #B4527C; color: #B4527C;">{{ t.nextCase }} →</button>
-            <a href="mailto:Belen.brionesibeas@gmail.com" style="background: #1A1714; color: #FBF7F2; font-size: 15px; font-weight: 600; padding: 14px 24px; border-radius: 999px;" style-hover="background: #B4527C;">{{ t.askMore }}</a>
+            <button type="button" onClick="{{ prevCase }}" style="border: 1px solid rgba(26,23,20,0.2); background: transparent; color: #1A1714; font-family: inherit; font-size: 15px; font-weight: 600; padding: 13px 22px; border-radius: 15px; cursor: pointer;" style-hover="border-color: #1A1714; color: #1A1714;">← {{ t.prevCase }}</button>
+            <button type="button" onClick="{{ nextCase }}" style="border: 1px solid rgba(26,23,20,0.2); background: transparent; color: #1A1714; font-family: inherit; font-size: 15px; font-weight: 600; padding: 13px 22px; border-radius: 15px; cursor: pointer;" style-hover="border-color: #1A1714; color: #1A1714;">{{ t.nextCase }} →</button>
+            <a href="mailto:Belen.brionesibeas@gmail.com" style="background: #1A1714; color: #FBF7F2; font-size: 15px; font-weight: 600; padding: 14px 24px; border-radius: 15px;" style-hover="background: #B4527C;">{{ t.askMore }}</a>
           </div>
         </div>
       </div>
@@ -279,19 +281,17 @@
 const DATA = [
   {
     image: "assets/vedimaq.png",
-    role: "Design System Lead",
-    kind: "Design system + UI kit (B2B)", kindIcon: "💻",
     page: "Proyecto Vedimaq.dc.html",
     year: "2026",
     tools: "Figma · Wix Studio",
-    es: { tag: "Diseño web · UX/UI", title: "Vedimaq", role: "Diseño UX/UI y maquetación",
+    es: { tag: "Diseño web", title: "Vedimaq", role: "Diseño UX/UI y maquetación",
       summary: "Sitio de venta, arriendo y mantenimiento de maquinaria pesada, pensado para cotizar rápido desde el celular o la obra.",
       blocks: [
         { heading: "El desafío", body: "Vedimaq necesitaba una web que ordenara cuatro servicios muy distintos —vender, comprar, arrendar y mantener maquinaria— sin que el usuario se perdiera en el camino ni tuviera que llamar por teléfono para entender qué ofrecen." },
         { heading: "Proceso", body: "Mapeé los cuatro flujos y los reduje a un solo punto de entrada en el hero: cuatro accesos directos que filtran el catálogo. Trabajé una paleta oscura con amarillo de seguridad, tomada del mundo de la maquinaria, y una tipografía de alto contraste para leer bien en exterior." },
         { heading: "Resultado", body: "Una home que responde la pregunta principal en los primeros tres segundos, con promesa de respuesta en menos de 30 minutos, catálogo filtrable y versión móvil pensada para usarse a una mano en terreno." }
       ] },
-    en: { tag: "Web design · UX/UI", title: "Vedimaq", role: "UX/UI design & build",
+    en: { tag: "Web design", title: "Vedimaq", role: "UX/UI design & build",
       summary: "A site for selling, renting and servicing heavy machinery, built for quick quotes from a phone on site.",
       blocks: [
         { heading: "Challenge", body: "Vedimaq needed a site that organised four very different services —selling, buying, renting and servicing— without losing the user or forcing a phone call to understand the offer." },
@@ -301,19 +301,17 @@ const DATA = [
   },
   {
     image: "assets/pix.png",
-    role: "Interaction Designer",
-    kind: "Branding + design system (web)", kindIcon: "🎨",
     page: "Proyecto PiX.dc.html",
     year: "2025",
     tools: "HTML · CSS · Figma · InDesign",
-    es: { tag: "Proyecto de título · Web + editorial", title: "PiX · Partituras de Interacción", role: "Diseño de interacción y editorial",
+    es: { tag: "Web + editorial", title: "PiX · Partituras de Interacción", role: "Diseño de interacción y editorial",
       summary: "Metodología para leer y organizar el trabajo en equipo como una partitura. Un sitio en HTML y un libro impreso.",
       blocks: [
         { heading: "El desafío", body: "Las Partituras de Interacción existían como teoría dentro de la escuela, pero no como algo que un equipo pudiera tomar y usar el lunes siguiente. Faltaba traducir el método a una herramienta concreta." },
         { heading: "Proceso", body: "Junto a Kamila Llerena diseñamos dos soportes que se sostienen entre sí: el libro «Partituras de Interacción en acción» reúne teoría, casos y aprendizajes; el sitio web abre el método con plantillas para empezar tu propia partitura en Figma o en Midi." },
         { heading: "Resultado", body: "Un sistema gráfico de triángulos y ritmo que funciona igual en la página impresa y en pantalla, con una web de cuatro puertas de entrada: qué es PiX, dos formas de empezar y la descarga del libro." }
       ] },
-    en: { tag: "Thesis project · Web + editorial", title: "PiX · Interaction Scores", role: "Interaction & editorial design",
+    en: { tag: "Web + editorial", title: "PiX · Interaction Scores", role: "Interaction & editorial design",
       summary: "A method for reading and organising teamwork like a musical score. An HTML site plus a printed book.",
       blocks: [
         { heading: "Challenge", body: "Interaction Scores existed as theory inside the school, but not as something a team could pick up and use next Monday. The method needed translating into a real tool." },
@@ -323,19 +321,17 @@ const DATA = [
   },
   {
     image: "assets/savia.png",
-    role: "UX/UI Designer",
-    kind: "UX + prototipado Figma (mobile)", kindIcon: "📱",
     page: "Proyecto Savia.dc.html",
     year: "2026",
     tools: "Figma · Diplomado UX/UI",
-    es: { tag: "App móvil · UX/UI", title: "Savia", role: "UX/UI · Research y prototipo",
+    es: { tag: "App móvil", title: "Savia", role: "UX/UI · Research y prototipo",
       summary: "App de cosmética natural: home, ficha de producto y carrito, con una rutina de cuidado paso a paso.",
       blocks: [
         { heading: "El desafío", body: "En cosmética natural la gente compra el producto pero no sabe cómo usarlo: el orden, los tiempos, cuánto aplicar. La duda aparece después de la compra y ahí se pierde la fidelidad." },
         { heading: "Proceso", body: "Diseñé el flujo completo de compra —home, ficha de producto y carrito— y sumé «Mi rutina», una sección con pasos, tiempos y avance visible. En la ficha trabajé el selector de tamaño y el paso a paso del carrito para reducir el abandono." },
         { heading: "Resultado", body: "Un prototipo de tres pantallas clave con lenguaje botánico, tipografía serif cálida y verdes profundos; el carrito muestra cuánto falta para el envío gratis y permite guardar para después." }
       ] },
-    en: { tag: "Mobile app · UX/UI", title: "Savia", role: "UX/UI · Research & prototype",
+    en: { tag: "Mobile app", title: "Savia", role: "UX/UI · Research & prototype",
       summary: "A natural cosmetics app: home, product page and cart, with a step-by-step care routine.",
       blocks: [
         { heading: "Challenge", body: "In natural cosmetics people buy the product but don't know how to use it: the order, the timing, how much to apply. The doubt shows up after purchase, and that's where loyalty is lost." },
@@ -345,19 +341,17 @@ const DATA = [
   },
   {
     image: "assets/trinidad.png",
-    role: "Brand Designer",
-    kind: "Web design + CMS (portfolio)", kindIcon: "🖥",
     page: "Proyecto Trinidad Ureta.dc.html",
     year: "2026",
     tools: "Figma · Diseño responsivo",
-    es: { tag: "Web responsiva · UX/UI", title: "Trinidad Ureta · Asesoría de imagen", role: "Diseño UX/UI responsivo",
+    es: { tag: "Web responsiva", title: "Trinidad Ureta · Asesoría de imagen", role: "Diseño UX/UI responsivo",
       summary: "Sitio de asesoría de imagen personal, del escritorio al móvil, con la consultoría como recorrido y no como catálogo.",
       blocks: [
         { heading: "El desafío", body: "La asesoría de imagen se vende por confianza. El sitio tenía que sonar cercano y contenido a la vez, y convertir sin presionar, en un público que llega desde Instagram y casi siempre desde el teléfono." },
         { heading: "Proceso", body: "Escribí la home como una conversación —«Empecemos por ti»— y ordené la oferta en un solo recorrido con un llamado por pantalla. Paleta verde bosque y arena, tipografía serif con itálicas para las frases que hacen clic emocional." },
         { heading: "Resultado", body: "Una web responsiva donde la versión móvil no es una reducción sino la principal: mismo ritmo de lectura, botón de inicio siempre a mano y carrito para los servicios." }
       ] },
-    en: { tag: "Responsive web · UX/UI", title: "Trinidad Ureta · Image consulting", role: "Responsive UX/UI design",
+    en: { tag: "Responsive web", title: "Trinidad Ureta · Image consulting", role: "Responsive UX/UI design",
       summary: "A personal image consulting site, desktop to mobile, built as a journey rather than a catalogue.",
       blocks: [
         { heading: "Challenge", body: "Image consulting sells on trust. The site had to feel close and restrained at once, converting without pressure, for an audience arriving from Instagram and almost always on a phone." },
@@ -367,19 +361,17 @@ const DATA = [
   },
   {
     image: "assets/dunar.png",
-    role: "Graphic Designer",
-    kind: "Infografía + diseño editorial", kindIcon: "🎨",
     page: "Proyecto Dunas de Concon.dc.html",
     year: "2024",
     tools: "Illustrator · InDesign · Impresión",
-    es: { tag: "Diseño gráfico · Infografía", title: "Campo Dunar de Concón", role: "Diseño de información e impresión",
+    es: { tag: "Infografía", title: "Campo Dunar de Concón", role: "Diseño de información e impresión",
       summary: "Infografía desplegable sobre la fauna de insectos del campo dunar y sus relaciones ecológicas.",
       blocks: [
         { heading: "El desafío", body: "Mostrar relaciones ecológicas entre insectos, plantas y suelo del campo dunar de Concón sin convertir la lámina en un texto científico ilegible para el visitante." },
         { heading: "Proceso", body: "Trabajé el despliegue como un recorrido por la duna: al abrirse, el papel repite el corte del paisaje —arena, sombra y mar— y cada insecto aparece en su franja. Impresión sobre cartulina kraft para que el material hable del lugar." },
         { heading: "Resultado", body: "Un desplegable con estuche que funciona como pieza de divulgación y como objeto: se lee por partes o se abre completo como un mapa de la duna." }
       ] },
-    en: { tag: "Graphic design · Infographic", title: "Concón Dune Field", role: "Information & print design",
+    en: { tag: "Infographic", title: "Concón Dune Field", role: "Information & print design",
       summary: "A fold-out infographic on the insect fauna of the dune field and its ecological relationships.",
       blocks: [
         { heading: "Challenge", body: "Showing ecological relationships between insects, plants and soil in the Concón dune field without turning the sheet into an unreadable scientific text." },
@@ -389,19 +381,17 @@ const DATA = [
   },
   {
     image: "assets/ubicate-hero.png",
-    role: "UX/UI Designer",
-    kind: "UX research + prototipo (mobile)", kindIcon: "📱",
     page: "Proyecto Ubicate.dc.html",
     year: "2025",
     tools: "Figma · Research en terreno · Prototipo",
-    es: { tag: "UX/UI · App móvil", title: "App Ubícate", role: "UX/UI e investigación",
+    es: { tag: "App móvil", title: "App Ubícate", role: "UX/UI e investigación",
       summary: "Transporte público de la V Región: información en tiempo real, pago con QR y una capa de seguridad comunitaria.",
       blocks: [
         { heading: "El desafío", body: "Licitaciones vencidas, pago en efectivo y cero información confiable: la incertidumbre genera ansiedad y exclusión en quienes dependen de la micro todos los días." },
         { heading: "Proceso", body: "Investigación en terreno con AEIOU, entrevistas y encuestas, user personas, mapas de empatía y journey maps de un estudiante y una adulta mayor." },
         { heading: "Resultado", body: "Una app que centraliza recorridos y frecuencias, digitaliza el pago con QR y suma alertas y ubicación compartida entre amigos." }
       ] },
-    en: { tag: "UX/UI · Mobile app", title: "Ubícate App", role: "UX/UI and research",
+    en: { tag: "Mobile app", title: "Ubícate App", role: "UX/UI and research",
       summary: "Public transport in Chile's V Region: live information, QR payment and a community safety layer.",
       blocks: [
         { heading: "Challenge", body: "Expired concessions, cash-only fares and no reliable information: the uncertainty creates anxiety and exclusion for people who depend on the bus every day." },
@@ -415,7 +405,8 @@ const COPY = {
   es: {
     navHome: "Inicio", navWork: "Proyectos", navAbout: "Sobre mí", contact: "Contactar", langLabel: "EN",
     heroRole: "Diseñadora de Interacción & UX/UI",
-    heroText: "Creo experiencias digitales claras, empáticas e intuitivas, combinando sensibilidad visual e investigación centrada en las personas.",
+    heroSpecialty: "Especialista en UX para apps móviles",
+    heroText: "Transformo procesos complejos en interfaces intuitivas que la gente quiere usar.",
     heroCta: "Explorar proyectos",
     workKicker: "Portafolio", workTitle: "Proyectos",
     workText: "Seis trabajos entre interacción, web, app y gráfica impresa. Haz clic en cualquiera para ver el caso completo.",
@@ -434,7 +425,8 @@ const COPY = {
   en: {
     navHome: "Home", navWork: "Work", navAbout: "About", contact: "Get in touch", langLabel: "ES",
     heroRole: "Interaction & UX/UI Designer",
-    heroText: "I build clear, empathetic and intuitive digital experiences, combining visual sensibility with people-centred research.",
+    heroSpecialty: "Specialised in UX for mobile apps",
+    heroText: "I turn complex processes into intuitive interfaces people actually want to use.",
     heroCta: "Explore projects",
     workKicker: "Portfolio", workTitle: "Selected work",
     workText: "Six projects across interaction, web, app and print. Click any one to read the full case.",
@@ -453,50 +445,40 @@ const COPY = {
 };
 
 class Component extends DCLogic {
-  state = { lang: (function () { try { return localStorage.getItem("bb-lang") === "en" ? "en" : "es"; } catch (e) { return "es"; } })(), open: null, index: 0, heroPaused: false, isMobile: false, menuOpen: false, activeSection: "inicio" };
+  state = { lang: (function () { try { return localStorage.getItem("bb-lang") === "en" ? "en" : "es"; } catch (e) { return "es"; } })(), open: null, index: 0, heroPaused: false, menuOpen: false, active: "inicio" };
 
   setLang(lang) {
     try { localStorage.setItem("bb-lang", lang); } catch (e) {}
     this.setState({ lang: lang });
   }
 
-  handleResize = () => {
-    const m = window.innerWidth < 860;
-    if (m !== this.state.isMobile) this.setState({ isMobile: m, menuOpen: false });
-  };
 
-  updateActiveSection = () => {
-    if (this.activeSectionFrame) return;
-    this.activeSectionFrame = requestAnimationFrame(() => {
-      this.activeSectionFrame = null;
-      this.measureActiveSection();
-    });
-  };
 
-  measureActiveSection = () => {
-    const header = document.querySelector("header");
-    const offset = (header ? header.getBoundingClientRect().height : 0) + 32;
-    const sections = ["inicio", "proyectos", "sobre-mi", "cv"];
-    let activeSection = "inicio";
-    sections.forEach((id) => {
-      const section = document.getElementById(id);
-      if (section && section.getBoundingClientRect().top <= offset) activeSection = id;
-    });
-    if (activeSection !== this.state.activeSection) this.setState({ activeSection });
-  };
+  ratios = {};
 
   componentDidMount() {
-    this.handleResize();
-    window.addEventListener("resize", this.handleResize);
-    this.updateActiveSection();
-    window.addEventListener("scroll", this.updateActiveSection, { passive: true });
+
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { this.ratios[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
+      const ids = ["inicio", "proyectos", "sobre-mi", "cv"];
+      let best = null, bestR = 0;
+      ids.forEach((id) => { const r = this.ratios[id] || 0; if (r > bestR) { bestR = r; best = id; } });
+      if (best && best !== this.state.active) this.setState({ active: best });
+    }, { threshold: [0, 0.12, 0.3, 0.5, 0.75, 1] });
+    ["inicio", "proyectos", "sobre-mi", "cv"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) this.observer.observe(el);
+    });
     this.paused = false;
     this.timer = setInterval(() => {
       if (this.paused || this.state.open !== null) return;
       this.step(1);
     }, 4200);
   }
-  componentWillUnmount() { clearInterval(this.timer); window.removeEventListener("resize", this.handleResize); window.removeEventListener("scroll", this.updateActiveSection); if (this.activeSectionFrame) cancelAnimationFrame(this.activeSectionFrame); }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    if (this.observer) this.observer.disconnect();
+  }
 
   getTrack() { return document.getElementById("carousel-track"); }
 
@@ -509,12 +491,11 @@ class Component extends DCLogic {
   step(dir) {
     const el = this.getTrack();
     if (!el) return;
-    const max = Math.max(0, el.scrollWidth - el.clientWidth);
-    if (!max) return;
+    const max = el.scrollWidth - el.clientWidth - 4;
     let target = el.scrollLeft + dir * this.cardWidth();
     if (target > max) target = 0;
     if (target < 0) target = max;
-    el.scrollTo({ left: target, behavior: "smooth" });
+    this.animateTo(el, target);
   }
   animateTo(el, target) {
     if (this.anim) clearInterval(this.anim);
@@ -543,12 +524,8 @@ class Component extends DCLogic {
     const t = COPY[lang];
     const heroPlay = this.state.heroPaused ? "paused" : "running";
     const toggleHero = () => this.setState(s => ({ heroPaused: !s.heroPaused }));
-    const activeNavHome = this.state.activeSection === "inicio" ? "active" : "";
-    const activeNavWork = this.state.activeSection === "proyectos" ? "active" : "";
-    const activeNavAbout = this.state.activeSection === "sobre-mi" ? "active" : "";
-    const activeNavCv = this.state.activeSection === "cv" ? "active" : "";
     const projects = DATA.map((p, i) => Object.assign({
-      image: p.image, year: p.year, tools: p.tools, role: p.role, kind: p.kind, kindIcon: p.kindIcon,
+      image: p.image, year: p.year, tools: p.tools,
       open: () => { if (p.page) { window.location.href = p.page; } else { this.setState({ open: i }); } }
     }, p[lang]));
     const openIdx = this.state.open;
@@ -560,12 +537,18 @@ class Component extends DCLogic {
       tools: ["Figma", "Adobe Illustrator", "InDesign", "Photoshop", "HTML & CSS", "Lovable", "Prototipado", "Research", "Ilustración"],
       heroPlay,
       toggleHero,
-      activeNavHome,
-      activeNavWork,
-      activeNavAbout,
-      activeNavCv,
-      isMobile: this.state.isMobile,
-      isDesktop: !this.state.isMobile,
+      navInicio: this.state.active === "inicio" ? "#1A1714" : "#6B635C",
+      navWork: this.state.active === "proyectos" ? "#1A1714" : "#6B635C",
+      navAbout: this.state.active === "sobre-mi" ? "#1A1714" : "#6B635C",
+      navCv: this.state.active === "cv" ? "#1A1714" : "#6B635C",
+      wInicio: this.state.active === "inicio" ? "700" : "500",
+      wWork: this.state.active === "proyectos" ? "700" : "500",
+      wAbout: this.state.active === "sobre-mi" ? "700" : "500",
+      wCv: this.state.active === "cv" ? "700" : "500",
+      barInicio: this.state.active === "inicio" ? "#1A1714" : "transparent",
+      barWork: this.state.active === "proyectos" ? "#1A1714" : "transparent",
+      barAbout: this.state.active === "sobre-mi" ? "#1A1714" : "transparent",
+      barCv: this.state.active === "cv" ? "#1A1714" : "transparent",
       menuOpen: this.state.menuOpen,
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
       closeMenu: () => this.setState({ menuOpen: false }),
