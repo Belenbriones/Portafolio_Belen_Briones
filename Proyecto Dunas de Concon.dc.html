@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="./assets/favicon-bb.svg">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -16,13 +15,14 @@
   html { scroll-behavior: smooth; }
   body { margin: 0; background: #FBF7F2; color: #1A1714; font-family: 'Hanken Grotesk', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   * { box-sizing: border-box; }
-  a { color: #B4527C; text-decoration: none; }
-  a:hover { color: #8E3A5E; }
+  a { color: #1A1714; text-decoration: none; }
+  a:hover { color: #1A1714; }
   ::selection { background: #E8D9C4; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 </style>
 <script src="./i18n.js"></script>
 <script src="./nav.js"></script>
+<script src="./prevnext.js"></script>
 </helmet>
 
 <div style="width: 100%; overflow-x: clip;">
@@ -37,21 +37,21 @@
       <a href="Portafolio Belen Briones.dc.html#proyectos" style="color: #4A423B; font-size: 15px; font-weight: 500;">Proyectos</a>
       <a href="Portafolio Belen Briones.dc.html#sobre-mi" style="color: #4A423B; font-size: 15px; font-weight: 500;">Sobre mí</a>
       <a href="Portafolio Belen Briones.dc.html#cv" style="color: #4A423B; font-size: 15px; font-weight: 500;">CV</a>
-      <button type="button" data-lang-toggle="1" aria-label="Cambiar idioma" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; padding: 9px 13px; border-radius: 999px; cursor: pointer;">EN</button>
-      <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #4A1F35; font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 999px;" style-hover="background: #E5A9C1;">Contactar</a>
+      <button type="button" data-lang-toggle="1" aria-label="Cambiar idioma" style="border: 1px solid rgba(26,23,20,0.18); background: transparent; color: #4A423B; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; padding: 9px 13px; border-radius: 15px; cursor: pointer;">EN</button>
+      <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #1A1714; font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 15px;" style-hover="background: #E5A9C1;">Contactar</a>
     </nav>
   </header>
 
   <section style="background: linear-gradient(150deg, #F6EFE6 0%, #EFE4D6 55%, #E7DCCB 100%); padding: clamp(40px, 6vw, 84px) clamp(16px, 4vw, 40px) clamp(48px, 7vw, 96px);">
     <div style="max-width: 1080px; margin: 0 auto; animation: fadeUp 0.6s ease both;">
-      <a href="Portafolio Belen Briones.dc.html#proyectos" class="nav-back" style="font-size: 15px; font-weight: 600; color: #6B5A46; margin-bottom: 26px;" style-hover="color: #1A1714;">← Volver a proyectos</a>
+      <a href="Portafolio Belen Briones.dc.html#proyectos" style="display: inline-block; font-size: 15px; font-weight: 600; color: #6B5A46; margin-bottom: 26px;" style-hover="color: #57504A;">← Volver a proyectos</a>
       <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px;">
-        <span style="background: rgba(255,255,255,0.7); color: #6B5A46; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 14px; border-radius: 999px;">Diseño gráfico</span>
-        <span style="background: rgba(255,255,255,0.7); color: #6B5A46; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 14px; border-radius: 999px;">Infografía</span>
-        <span style="background: rgba(255,255,255,0.7); color: #6B5A46; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 14px; border-radius: 999px;">Editorial</span>
+        <span style="background: rgba(255,255,255,0.7); color: #6B5A46; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 14px; border-radius: 15px;">Diseño gráfico</span>
+        <span style="background: rgba(255,255,255,0.7); color: #6B5A46; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 14px; border-radius: 15px;">Infografía</span>
+        <span style="background: rgba(255,255,255,0.7); color: #6B5A46; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 14px; border-radius: 15px;">Editorial</span>
       </div>
       <h1 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(36px, 6vw, 68px); line-height: 1.04; margin: 0 0 14px; max-width: 20ch;">Infografía &amp; Cuerpo Gráfico</h1>
-      <p style="font-size: clamp(18px, 2.4vw, 26px); font-weight: 300; color: #4A3E2F; margin: 0 0 34px; max-width: 40ch; line-height: 1.3;">Relaciones ecológicas en el Campo Dunar de Concón</p><img src="assets/dunar.png" alt="Cuerpo gráfico desplegable del Campo Dunar de Concón" style="width: 100%; max-width: 505px; border-radius: 20px 20px 0 0; display: block; margin: 0 auto; box-shadow: 0 26px 60px rgba(26,23,20,0.20);">
+      <p style="font-size: clamp(18px, 2.4vw, 26px); font-weight: 300; color: #4A3E2F; margin: 0 0 34px; max-width: 40ch; line-height: 1.3;">Relaciones ecológicas en el Campo Dunar de Concón</p><img src="assets/dunar.png" alt="Cuerpo gráfico desplegable del Campo Dunar de Concón" style="width: 100%; max-width: 505px; border-radius: 15px 20px 0 0; display: block; margin: 0 auto; box-shadow: 0 26px 60px rgba(26,23,20,0.20);">
       
     </div>
   </section>
@@ -59,7 +59,7 @@
   <section style="padding: clamp(48px, 7vw, 96px) clamp(16px, 4vw, 40px); background: #FBF7F2;">
     <div style="max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(28px, 4vw, 56px);">
       <div>
-        <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #B4527C; margin-bottom: 12px;">El proyecto</span>
+        <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #1A1714; margin-bottom: 12px;">El proyecto</span>
         <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.1; margin: 0 0 18px;">Biodiversidad oculta: ecosistema dunar de Concón</h2>
         <p style="font-size: 17px; line-height: 1.7; color: #4A423B; margin: 0 0 16px; text-wrap: pretty;">Proyecto editorial e infográfico centrado en visibilizar el rol ecológico de las abejas nativas y su relación simbiótica con la flora del campo dunar de Concón.</p>
         <p style="font-size: 17px; line-height: 1.7; color: #4A423B; margin: 0; text-wrap: pretty;">A través de ilustración digital detallada y una diagramación secuencial, la pieza traduce dinámicas biológicas complejas, polinización, competencia y anidación subterránea, en una experiencia visual clara y envolvente.</p>
@@ -81,41 +81,41 @@
       </div>
       <div style="display: flex; flex-direction: column; justify-content: center; align-items: flex-end; gap: 22px;">
         
-        <img src="assets/dunar-ilustracion.png" alt="Ilustración: abeja Caupolicana fulvicollis polinizando en el campo dunar" style="width: 324px; max-width: 100%; display: block; border-radius: 14px; box-shadow: 0 14px 36px rgba(26,23,20,0.14);">
+        <img src="assets/dunar-ilustracion.png" alt="Ilustración: abeja Caupolicana fulvicollis polinizando en el campo dunar" style="width: 324px; max-width: 100%; display: block; border-radius: 15px; box-shadow: 0 14px 36px rgba(26,23,20,0.14);">
       </div>
     </div>
   </section>
 
   <section style="padding: clamp(40px, 6vw, 86px) clamp(16px, 4vw, 40px); background: linear-gradient(160deg, #F3EEE6 0%, #FAF5EE 100%);">
     <div style="max-width: 1080px; margin: 0 auto;">
-      <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #B4527C; margin-bottom: 12px;">Proceso</span>
+      <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #1A1714; margin-bottom: 12px;">Proceso</span>
       <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(30px, 4.2vw, 46px); line-height: 1.08; margin: 0 0 12px;">De la investigación al dibujo</h2>
       <p style="font-size: 17px; line-height: 1.7; color: #57504A; max-width: 62ch; margin: 0 0 clamp(28px, 4vw, 48px); text-wrap: pretty;">La investigación partió por acotar el tema: las relaciones ecológicas de las abejas nativas de Concón. De ahí salió el esquema que ordena la infografía y, después, el banco de ilustraciones digitales de abejas y flora local.</p>
 
       <div style="display: flex; flex-direction: column; gap: clamp(36px, 5vw, 64px);">
         <figure style="margin: 0;">
-          <img src="assets/dunar-lamina3.png" alt="Lámina 3: esquema de relaciones ecológicas de las abejas de Concón" style="width: 100%; border-radius: 14px; display: block; background: #FFFFFF; box-shadow: 0 12px 32px rgba(26,23,20,0.10);">
+          <img src="assets/dunar-lamina3.png" alt="Lámina 3: esquema de relaciones ecológicas de las abejas de Concón" style="width: 100%; border-radius: 15px; display: block; background: #FFFFFF; box-shadow: 0 12px 32px rgba(26,23,20,0.10);">
           <figcaption style="margin-top: 12px; font-size: 15px; color: #7A7168;">Lámina 3 · Selección del tema y esquema de las cinco relaciones ecológicas: polinización, parasitismo, depredación, competencia y anidación.</figcaption>
         </figure>
         <figure style="margin: 0;">
           <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(24px, 3vw, 32px); line-height: 1.15; margin: 0 0 10px;">Dibujos de las abejas</h3>
           <p style="font-size: 17px; line-height: 1.7; color: #4A423B; max-width: 68ch; margin: 0 0 20px; text-wrap: pretty;">Los dibujos se realizaron de forma digital utilizando la plataforma Procreate. Se emplearon diferentes colores y pinceles para crear diversas abejas con sus características distintivas. Una vez coloreados, los dibujos se exportaron en formato PNG y se enviaron al computador. Para corregir ciertas imperfecciones, se utilizaron programas como Photoshop o Illustrator, dependiendo de las necesidades específicas de cada imagen. Este proceso permitió mejorar la calidad y precisión de las ilustraciones, asegurando que cada abeja reflejara con exactitud sus características y detalles únicos.</p>
-          <img src="assets/dunar-lamina4.png" alt="Lámina 4: dibujos de abejas" style="width: 100%; border-radius: 14px; display: block; background: #FFFFFF; box-shadow: 0 12px 32px rgba(26,23,20,0.10);">
+          <img src="assets/dunar-lamina4.png" alt="Lámina 4: dibujos de abejas" style="width: 100%; border-radius: 15px; display: block; background: #FFFFFF; box-shadow: 0 12px 32px rgba(26,23,20,0.10);">
           <figcaption style="margin-top: 12px; font-size: 15px; color: #7A7168;">Lámina 4 · Doce abejas nativas dibujadas en Procreate.</figcaption>
         </figure>
         <figure style="margin: 0;">
           <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(24px, 3vw, 32px); line-height: 1.15; margin: 0 0 10px;">Abejas y flora</h3>
           <p style="font-size: 17px; line-height: 1.7; color: #4A423B; max-width: 68ch; margin: 0 0 20px; text-wrap: pretty;">Los dibujos que se muestran en la lámina representan la flora local y su interacción con las abejas, ilustrando el mutualismo que se produce cuando las abejas polinizan estas plantas. Las flores ilustradas son características de las dunas de Concón. A través de estas imágenes, se busca destacar la importancia de las abejas en la polinización y su papel crucial en el ecosistema local. Además, se incluyeron detalles botánicos específicos de cada especie de flor para resaltar la diversidad y riqueza de la flora de esta región.</p>
-          <img src="assets/dunar-lamina5.png" alt="Lámina 5: abejas y flora" style="width: 100%; border-radius: 14px; display: block; background: #FFFFFF; box-shadow: 0 12px 32px rgba(26,23,20,0.10);">
+          <img src="assets/dunar-lamina5.png" alt="Lámina 5: abejas y flora" style="width: 100%; border-radius: 15px; display: block; background: #FFFFFF; box-shadow: 0 12px 32px rgba(26,23,20,0.10);">
           <figcaption style="margin-top: 12px; font-size: 15px; color: #7A7168;">Lámina 5 · El mutualismo dibujado especie por especie, con detalle botánico de cada flor.</figcaption>
         </figure>
         <figure style="margin: 0;">
           <h3 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(24px, 3vw, 32px); line-height: 1.15; margin: 0 0 20px;">Cuerpo gráfico: pliegue y armado</h3>
-          <img src="assets/dunar-lamina9.png" alt="Lámina 9: secuencia de pliegue del cuerpo gráfico" style="width: 100%; border-radius: 14px; display: block; background: #FFFFFF; box-shadow: 0 12px 32px rgba(26,23,20,0.10);">
+          <img src="assets/dunar-lamina9.png" alt="Lámina 9: secuencia de pliegue del cuerpo gráfico" style="width: 100%; border-radius: 15px; display: block; background: #FFFFFF; box-shadow: 0 12px 32px rgba(26,23,20,0.10);">
           <figcaption style="margin-top: 12px; font-size: 15px; color: #7A7168;">Lámina 9 · Secuencia de pliegue: portada, interior horizontal y unión de las hojas.</figcaption>
         </figure>
         <figure style="margin: 0;">
-          <img src="assets/dunar-lamina10.png" alt="Lámina 10: ensamblaje y contenedor del cuerpo gráfico" style="width: 100%; border-radius: 14px; display: block; background: #FFFFFF; box-shadow: 0 12px 32px rgba(26,23,20,0.10);">
+          <img src="assets/dunar-lamina10.png" alt="Lámina 10: ensamblaje y contenedor del cuerpo gráfico" style="width: 100%; border-radius: 15px; display: block; background: #FFFFFF; box-shadow: 0 12px 32px rgba(26,23,20,0.10);">
           <figcaption style="margin-top: 12px; font-size: 15px; color: #7A7168;">Lámina 10 · Ensamblaje completo, medidas del desplegable (76,2 × 21 cm) y contenedor horizontal de 14,6 × 1,4 cm.</figcaption>
         </figure>
       </div>
@@ -124,16 +124,16 @@
 
   <section style="padding: clamp(48px, 7vw, 96px) clamp(16px, 4vw, 40px); background: #FBF7F2;">
     <div style="max-width: 1080px; margin: 0 auto;">
-      <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #B4527C; margin-bottom: 12px;">Resultado</span>
+      <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #1A1714; margin-bottom: 12px;">Resultado</span>
       <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(30px, 4.2vw, 46px); line-height: 1.08; margin: 0 0 12px;">La pieza, desplegada</h2>
       <p style="font-size: 17px; line-height: 1.7; color: #57504A; max-width: 62ch; margin: 0 0 clamp(24px, 3vw, 40px); text-wrap: pretty;">Nueve momentos de lectura: desde la portada y su estuche hasta la contraportada con la información técnica. El desplegable se puede leer por partes o abrir completo como un mapa de la duna.</p>
-      <img src="assets/dunar-fotografias.png" alt="Fotografías del cuerpo gráfico desplegado, nueve momentos" style="width: 100%; max-width: 612px; border-radius: 16px; display: block; background: #FFFFFF; box-shadow: 0 16px 40px rgba(26,23,20,0.12); height: auto;">
+      <img src="assets/dunar-fotografias.png" alt="Fotografías del cuerpo gráfico desplegado, nueve momentos" style="width: 100%; max-width: 612px; border-radius: 15px; display: block; background: #FFFFFF; box-shadow: 0 16px 40px rgba(26,23,20,0.12); height: auto;">
     </div>
   </section>
 
   <section style="padding: 0 clamp(16px, 4vw, 40px) clamp(48px, 7vw, 90px); background: #FBF7F2;">
     <div style="max-width: 1080px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; padding-top: 30px; border-top: 1px solid rgba(26,23,20,0.12);">
-      <a href="Portafolio Belen Briones.dc.html#proyectos" style="border: 1px solid rgba(26,23,20,0.2); color: #1A1714; font-size: 16px; font-weight: 600; padding: 14px 24px; border-radius: 999px;" style-hover="border-color: #B4527C; color: #B4527C;">← Todos los proyectos</a>
+      <a href="Portafolio Belen Briones.dc.html#proyectos" style="border: 1px solid rgba(26,23,20,0.2); color: #1A1714; font-size: 16px; font-weight: 600; padding: 14px 24px; border-radius: 15px;" style-hover="border-color: #1A1714; color: #1A1714;">← Todos los proyectos</a>
     </div>
   </section>
 
@@ -146,16 +146,16 @@
         </div>
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #7A7168;">Contacto</span>
-          <a href="mailto:Belen.brionesibeas@gmail.com" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">Belen.brionesibeas@gmail.com</a>
-          <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">WhatsApp · +56 9 5719 0304</a>
-          <a href="https://www.linkedin.com/in/belen-briones-uxui/" target="_blank" rel="noopener" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">LinkedIn · belen-briones-uxui</a>
+          <a href="mailto:Belen.brionesibeas@gmail.com" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">Belen.brionesibeas@gmail.com</a>
+          <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">WhatsApp · +56 9 5719 0304</a>
+          <a href="https://www.linkedin.com/in/belen-briones-uxui/" target="_blank" rel="noopener" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">LinkedIn · belen-briones-uxui</a>
         </div>
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #7A7168;">Navegación</span>
-          <a href="Portafolio Belen Briones.dc.html#inicio" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">Inicio</a>
-          <a href="Portafolio Belen Briones.dc.html#proyectos" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">Proyectos</a>
-          <a href="Portafolio Belen Briones.dc.html#sobre-mi" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">Sobre mí</a>
-          <a href="Portafolio Belen Briones.dc.html#cv" style="font-size: 17px; color: #1A1714;" style-hover="color: #B4527C;">CV</a>
+          <a href="Portafolio Belen Briones.dc.html#inicio" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">Inicio</a>
+          <a href="Portafolio Belen Briones.dc.html#proyectos" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">Proyectos</a>
+          <a href="Portafolio Belen Briones.dc.html#sobre-mi" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">Sobre mí</a>
+          <a href="Portafolio Belen Briones.dc.html#cv" style="font-size: 17px; color: #1A1714;" style-hover="color: #57504A;">CV</a>
         </div>
       </div>
       <div style="margin-top: 44px; padding-top: 20px; border-top: 1px solid rgba(26,23,20,0.12); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between;">

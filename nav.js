@@ -10,8 +10,6 @@
       ".bb-burger{display:none;width:46px;height:46px;align-items:center;justify-content:center;" +
       "border:1px solid rgba(26,23,20,0.18);background:rgba(255,255,255,0.5);color:#1A1714;" +
       "font-size:19px;line-height:1;border-radius:50%;cursor:pointer;font-family:inherit;}" +
-      ".nav-back{display:inline-flex;align-items:center;gap:8px;transition:color .2s ease,opacity .2s ease;}" +
-      ".nav-back:hover{opacity:.72;}" +
       ".bb-panel{display:none;border-top:1px solid rgba(26,23,20,0.10);background:rgba(255,255,255,0.97);" +
       "padding:8px clamp(16px,4vw,40px) 20px;flex-direction:column;}" +
       ".bb-panel.bb-open{display:flex;}" +

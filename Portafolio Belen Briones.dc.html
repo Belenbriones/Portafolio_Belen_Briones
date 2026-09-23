@@ -31,6 +31,51 @@
     .bb-burger { display: flex; }
   }
   @media (min-width: 860px) { .bb-panel { display: none !important; } }
+
+  .about-grid {
+    position: relative;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: clamp(24px, 3vw, 40px);
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    padding-bottom: clamp(165px, 18vw, 215px);
+    width: min(100%, 1160px);
+    height: auto;
+  }
+  .about-image-wrap {
+    position: relative;
+    padding: 0 0 26px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .about-copy {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  @media (max-width: 640px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      width: 100%;
+      padding-bottom: 26px;
+    }
+    .about-image-wrap {
+      max-width: 260px;
+      padding-bottom: 8px;
+    }
+    .about-copy {
+      max-width: 100%;
+    }
+    .about-copy p {
+      font-size: clamp(15px, 4.2vw, 17px);
+    }
+  }
 </style>
 </helmet>
 
@@ -166,14 +211,13 @@
   </section>
 
   <section id="sobre-mi" style="background: linear-gradient(160deg, #F2EEF6 0%, #FAF2E9 100%); padding: clamp(56px, 8vw, 104px) clamp(16px, 4vw, 40px);">
-    
-  <div style="position: relative; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(24px, 3vw, 40px); align-items: center; justify-items: center; justify-content: center; padding-bottom: clamp(165px, 18vw, 215px); width: 1160px; height: 455px">
-      
-      <div style="position: relative; padding: 0 0 26px; width: 100%; max-width: 300px; margin: 0 auto;">
-        
-        
-      <img src="assets/belen.png" alt="Belén Briones" style="width: 100%; max-width: 300px; border-radius: 15px; display: block; box-shadow: 0 20px 46px rgba(26,23,20,0.16); background: #FFFFFF; height: auto;"><img src="assets/flor-geranio.png" alt="" aria-hidden="true" style="position: absolute; z-index: 0; width: 142px; height: 136px; opacity: 0.9; transform: rotate(-6deg); transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); left: 212px; top: 240px" style-hover="transform: rotate(2deg) translate(-10px, -14px) scale(1.04);"></div><div style="width: 100%; max-width: 560px;">
-        
+    <div class="about-grid">
+      <div class="about-image-wrap">
+        <img src="assets/belen.png" alt="Belén Briones" style="width: 100%; max-width: 300px; border-radius: 15px; display: block; box-shadow: 0 20px 46px rgba(26,23,20,0.16); background: #FFFFFF; height: auto;">
+        <img src="assets/flor-geranio.png" alt="" aria-hidden="true" style="position: absolute; z-index: 0; width: 142px; height: 136px; opacity: 0.9; transform: rotate(-6deg); transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); left: 212px; top: 240px" style-hover="transform: rotate(2deg) translate(-10px, -14px) scale(1.04);">
+      </div>
+
+      <div class="about-copy">
         <h2 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.08; margin: 0 0 18px;">{{ t.aboutTitle }}</h2>
         <p style="font-size: 17px; line-height: 1.68; color: #4A423B; margin: 0 0 16px; max-width: 54ch; text-wrap: pretty;">{{ t.aboutP1 }}</p>
         <p style="font-size: 17px; line-height: 1.68; color: #4A423B; margin: 0 0 30px; max-width: 54ch; text-wrap: pretty;">{{ t.aboutP2 }}</p>
@@ -185,9 +229,8 @@
           </sc-for>
         </div>
       </div>
-
-      
-    </div></section>
+    </div>
+  </section>
 
   <section id="cv" style="padding: clamp(52px, 7vw, 92px) clamp(16px, 4vw, 40px); background: #FBF7F2;">
     <div style="max-width: 1000px; margin: 0 auto; background: #1A1714; border-radius: 15px; padding: clamp(32px, 5vw, 58px); display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; align-items: center;">

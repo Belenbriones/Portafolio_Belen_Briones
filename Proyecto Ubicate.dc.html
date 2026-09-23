@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="./assets/favicon-bb.svg">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -23,6 +22,7 @@
 </style>
 <script src="./i18n.js"></script>
 <script src="./nav.js"></script>
+<script src="./prevnext.js"></script>
 </helmet>
 
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1B5EA8"></rect><rect x="30" y="28" width="40" height="38" rx="8" fill="#EAA315"></rect><circle cx="40" cy="72" r="5" fill="#EAA315"></circle><circle cx="60" cy="72" r="5" fill="#EAA315"></circle></svg></template>
@@ -39,17 +39,17 @@
       <a href="Portafolio Belen Briones.dc.html#proyectos" style="color: #475569; font-size: 15px; font-weight: 500;">Proyectos</a>
       <a href="Portafolio Belen Briones.dc.html#sobre-mi" style="color: #475569; font-size: 15px; font-weight: 500;">Sobre mí</a>
       <a href="Portafolio Belen Briones.dc.html#cv" style="color: #475569; font-size: 15px; font-weight: 500;">CV</a>
-      <button type="button" data-lang-toggle="1" aria-label="Cambiar idioma" style="border: 1px solid rgba(30,41,59,0.18); background: transparent; color: #475569; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; padding: 9px 13px; border-radius: 999px; cursor: pointer;">EN</button>
-      <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #4A1F35; font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 999px;" style-hover="background: #E5A9C1;">Contactar</a>
+      <button type="button" data-lang-toggle="1" aria-label="Cambiar idioma" style="border: 1px solid rgba(30,41,59,0.18); background: transparent; color: #475569; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; padding: 9px 13px; border-radius: 15px; cursor: pointer;">EN</button>
+      <a href="https://wa.me/56957190304?text=Hola%20Bel%C3%A9n%2C%20vi%20tu%20portafolio" target="_blank" rel="noopener" style="background: #F0C6D6; color: #1A1714; font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 15px;" style-hover="background: #E5A9C1;">Contactar</a>
     </nav>
   </header>
 
   <section style="background: #FFFFFF; padding: clamp(36px, 5vw, 68px) clamp(16px, 4vw, 40px) clamp(20px, 3vw, 36px);">
     <div style="max-width: 1120px; margin: 0 auto; animation: fadeUp 0.6s ease both;">
-      <a href="Portafolio Belen Briones.dc.html#proyectos" class="nav-back" style="font-size: 15px; font-weight: 600; color: #1B5EA8; margin-bottom: 26px;" style-hover="color: #144A85;">← Volver a proyectos</a>
+      <a href="Portafolio Belen Briones.dc.html#proyectos" style="display: inline-block; font-size: 15px; font-weight: 600; color: #1B5EA8; margin-bottom: 26px;" style-hover="color: #144A85;">← Volver a proyectos</a>
       <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px;">
-        <span style="background: #1B5EA8; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 14px; border-radius: 999px; white-space: nowrap; flex: 0 0 auto;">Proyecto académico</span>
-        <span style="background: #FEF3DA; color: #8A5B04; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(234,163,21,0.5); white-space: nowrap; flex: 0 0 auto;">UX/UI Designer</span>
+        <span style="background: #1B5EA8; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 14px; border-radius: 15px; white-space: nowrap; flex: 0 0 auto;">Proyecto académico</span>
+        <span style="background: #FEF3DA; color: #8A5B04; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 14px; border-radius: 15px; border: 1px solid rgba(234,163,21,0.5); white-space: nowrap; flex: 0 0 auto;">UX/UI Designer</span>
       </div>
       <h1 style="font-size: clamp(38px, 6.4vw, 72px); font-weight: 800; line-height: 1.02; letter-spacing: -0.03em; margin: 0 0 10px;">App Ubícate</h1>
       <p style="font-size: clamp(19px, 2.4vw, 27px); font-weight: 500; color: #1B5EA8; margin: 0 0 24px; line-height: 1.25;">Dignificando el transporte público en la V Región</p>
@@ -57,13 +57,13 @@
         <p style="font-size: 17px; line-height: 1.75; color: #475569; margin: 0; text-wrap: pretty;">El sistema de transporte público en la V Región (Valparaíso – Concón) atraviesa una crisis de desinformación y desconfianza, con licitaciones vencidas y una alta dependencia del pago en efectivo. Esta incertidumbre genera ansiedad y exclusión en miles de usuarios que dependen de las micros para su vida diaria.</p>
         <p style="font-size: 17px; line-height: 1.75; color: #475569; margin: 0; text-wrap: pretty;">Ubícate nace como una respuesta desde el diseño de interacción para transformar esta «odisea» en una experiencia digna. A través de una investigación profunda en terreno, desarrollamos una solución mobile que centraliza la información en tiempo real y digitaliza el pago, priorizando la accesibilidad y la autonomía de estudiantes, trabajadores y adultos mayores.</p>
       </div>
-      <a href="https://www.figma.com/proto/peACR3xy5KsTrH51hAojfS/Micro-Zona-C?node-id=281-6335&amp;t=J1u2OD4iRQIm4C6O-1&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=281%3A6335" target="_blank" rel="noopener" style="display: inline-block; margin-top: 26px; background: #1B5EA8; color: #FFFFFF; font-size: 16px; font-weight: 700; padding: 15px 28px; border-radius: 999px;" style-hover="background: #144A85;">Ver prototipo en Figma ↗</a>
+      <a href="https://www.figma.com/proto/peACR3xy5KsTrH51hAojfS/Micro-Zona-C?node-id=281-6335&amp;t=J1u2OD4iRQIm4C6O-1&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=281%3A6335" target="_blank" rel="noopener" style="display: inline-block; margin-top: 26px; background: #1B5EA8; color: #FFFFFF; font-size: 16px; font-weight: 700; padding: 15px 28px; border-radius: 15px;" style-hover="background: #144A85;">Ver prototipo en Figma ↗</a>
     </div>
   </section>
 
   <section style="padding: 0 clamp(16px, 4vw, 40px) clamp(40px, 6vw, 72px);">
     <div style="max-width: 1120px; margin: 0 auto;">
-      <img src="assets/ubicate-hero.png" alt="Pantalla de inicio de Ubícate en un paradero de la V Región" style="width: 517px; display: block; border-radius: 20px; box-shadow: 0 18px 44px rgba(30,41,59,0.16); height: 311px">
+      <img src="assets/ubicate-hero.png" alt="Pantalla de inicio de Ubícate en un paradero de la V Región" style="width: 517px; display: block; border-radius: 15px; box-shadow: 0 18px 44px rgba(30,41,59,0.16); height: 311px">
     </div>
   </section>
 
@@ -96,18 +96,18 @@
           <h2 style="font-size: clamp(28px, 4vw, 44px); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; color: #FFFFFF; margin: 0 0 18px;">Empatía y Descubrimiento</h2>
           <p style="font-size: 17px; line-height: 1.75; color: #DCE9F7; margin: 0 0 26px; text-wrap: pretty;">No nos quedamos en el escritorio; fuimos al terreno. Mediante metodologías AEIOU, entrevistas y encuestas, identificamos que el problema no es solo la falta de buses, sino la ansiedad que genera la incertidumbre.</p>
           <div style="display: flex; flex-direction: column; gap: 16px;">
-            <div style="background: rgba(255,255,255,0.10); border-left: 4px solid #EAA315; border-radius: 0 12px 12px 0; padding: 18px 20px;">
+            <div style="background: rgba(255,255,255,0.10); border-left: 4px solid #EAA315; border-radius: 0 15px 15px 0; padding: 18px 20px;">
               <h3 style="font-size: 16px; font-weight: 700; color: #FFFFFF; margin: 0 0 6px;">Puntos de dolor clave</h3>
               <p style="font-size: 15px; line-height: 1.65; color: #DCE9F7; margin: 0;">Inseguridad en los paraderos, dependencia del efectivo y falta de información para personas con movilidad reducida.</p>
             </div>
-            <div style="background: rgba(255,255,255,0.10); border-left: 4px solid #EAA315; border-radius: 0 12px 12px 0; padding: 18px 20px;">
+            <div style="background: rgba(255,255,255,0.10); border-left: 4px solid #EAA315; border-radius: 0 15px 15px 0; padding: 18px 20px;">
               <h3 style="font-size: 16px; font-weight: 700; color: #FFFFFF; margin: 0 0 6px;">Benchmark</h3>
               <p style="font-size: 15px; line-height: 1.65; color: #DCE9F7; margin: 0;">Analizamos sistemas globales (RATP, GVB) y locales (EFE, Red). Concluimos que, aunque la infraestructura sea robusta, la experiencia digital suele olvidar el factor humano.</p>
             </div>
           </div>
         </div>
         <figure style="margin: 0; justify-self: center;">
-          <img src="assets/ubicate-paradero.png" alt="Ilustración de dos usuarios esperando la micro en un paradero" style="width: 100%; max-width: 380px; display: block; border-radius: 16px;">
+          <img src="assets/ubicate-paradero.png" alt="Ilustración de dos usuarios esperando la micro en un paradero" style="width: 100%; max-width: 380px; display: block; border-radius: 15px;">
         </figure>
       </div>
     </div>
@@ -127,7 +127,7 @@
         </div>
       </div>
 
-      <div style="background: #F3F4F6; border-radius: 18px; padding: clamp(26px, 4vw, 42px); border-top: 5px solid #EAA315; min-height: 220px; display: flex; flex-direction: column; justify-content: center;">
+      <div style="background: #F3F4F6; border-radius: 15px; padding: clamp(26px, 4vw, 42px); border-top: 5px solid #EAA315; min-height: 220px; display: flex; flex-direction: column; justify-content: center;">
         <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8A5B04; margin-bottom: 14px;">{{ quoteTopic }}</span>
         <blockquote style="margin: 0 0 18px; font-size: clamp(19px, 2.4vw, 26px); line-height: 1.45; font-weight: 500; color: #1E293B; text-wrap: pretty;">{{ quoteText }}</blockquote>
         <footer style="font-size: 16px; font-weight: 600; color: #1B5EA8;">{{ quoteAuthor }}</footer>
@@ -140,19 +140,19 @@
 
       <div style="margin-top: clamp(34px, 5vw, 58px); display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(20px, 3vw, 32px);">
         <figure style="margin: 0;">
-          <img src="assets/ubicate-persona-diego.png" alt="User persona de Diego Ramírez, estudiante de 17 años" style="width: 100%; display: block; border-radius: 14px; box-shadow: 0 10px 26px rgba(30,41,59,0.10);">
+          <img src="assets/ubicate-persona-diego.png" alt="User persona de Diego Ramírez, estudiante de 17 años" style="width: 100%; display: block; border-radius: 15px; box-shadow: 0 10px 26px rgba(30,41,59,0.10);">
           <figcaption style="margin-top: 10px; font-size: 15px; line-height: 1.6; color: #64748B;">Diego, 17 años: depende de la micro para llegar al liceo y pelea todos los días con los atrasos.</figcaption>
         </figure>
         <figure style="margin: 0;">
-          <img src="assets/ubicate-persona-maritza.png" alt="User persona de Maritza Parra, jubilada de 74 años" style="width: 100%; display: block; border-radius: 14px; box-shadow: 0 10px 26px rgba(30,41,59,0.10);">
+          <img src="assets/ubicate-persona-maritza.png" alt="User persona de Maritza Parra, jubilada de 74 años" style="width: 100%; display: block; border-radius: 15px; box-shadow: 0 10px 26px rgba(30,41,59,0.10);">
           <figcaption style="margin-top: 10px; font-size: 15px; line-height: 1.6; color: #64748B;">Maritza, 74 años: busca autonomía y un viaje en el que nadie la deje botada.</figcaption>
         </figure>
         <figure style="margin: 0;">
-          <img src="assets/ubicate-empatia-diego.png" alt="Mapa de empatía de Diego" style="width: 100%; display: block; border-radius: 14px; box-shadow: 0 10px 26px rgba(30,41,59,0.10);">
+          <img src="assets/ubicate-empatia-diego.png" alt="Mapa de empatía de Diego" style="width: 100%; display: block; border-radius: 15px; box-shadow: 0 10px 26px rgba(30,41,59,0.10);">
           <figcaption style="margin-top: 10px; font-size: 15px; line-height: 1.6; color: #64748B;">Mapa de empatía de Diego: lo que ve, oye y le duele en cada trayecto.</figcaption>
         </figure>
         <figure style="margin: 0;">
-          <img src="assets/ubicate-empatia-maritza.png" alt="Mapa de empatía de Maritza" style="width: 100%; display: block; border-radius: 14px; box-shadow: 0 10px 26px rgba(30,41,59,0.10);">
+          <img src="assets/ubicate-empatia-maritza.png" alt="Mapa de empatía de Maritza" style="width: 100%; display: block; border-radius: 15px; box-shadow: 0 10px 26px rgba(30,41,59,0.10);">
           <figcaption style="margin-top: 10px; font-size: 15px; line-height: 1.6; color: #64748B;">Mapa de empatía de Maritza: el respeto y la seguridad pesan tanto como la frecuencia.</figcaption>
         </figure>
       </div>
@@ -165,11 +165,11 @@
       <h2 style="font-size: clamp(28px, 4vw, 44px); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 16px;">El viaje, minuto a minuto</h2>
       <p style="font-size: 17px; line-height: 1.75; color: #475569; max-width: 68ch; margin: 0 0 clamp(24px, 3vw, 38px); text-wrap: pretty;">Los journey maps dejaron ver dónde cae la emoción: la espera sin información, el pago en efectivo y el momento de bajar. Esos tres valles definieron las funciones prioritarias de la app.</p>
       <figure style="margin: 0 0 clamp(22px, 3vw, 34px);">
-        <img src="assets/ubicate-journey-diego.png" alt="Journey map del viaje de Diego en micro" style="width: 690px; display: block; border-radius: 14px; box-shadow: 0 12px 30px rgba(30,41,59,0.12); height: 388px">
+        <img src="assets/ubicate-journey-diego.png" alt="Journey map del viaje de Diego en micro" style="width: 690px; display: block; border-radius: 15px; box-shadow: 0 12px 30px rgba(30,41,59,0.12); height: 388px">
         <figcaption style="margin-top: 10px; font-size: 15px; line-height: 1.6; color: #64748B;">Diego: la curva emocional cae al no saber cuándo pasa la micro y vuelve a caer al llegar atrasado.</figcaption>
       </figure>
       <figure style="margin: 0;">
-        <img src="assets/ubicate-journey-maritza.png" alt="Journey map del viaje de Maritza en micro" style="width: 693px; display: block; border-radius: 14px; box-shadow: 0 12px 30px rgba(30,41,59,0.12); height: 390px">
+        <img src="assets/ubicate-journey-maritza.png" alt="Journey map del viaje de Maritza en micro" style="width: 693px; display: block; border-radius: 15px; box-shadow: 0 12px 30px rgba(30,41,59,0.12); height: 390px">
         <figcaption style="margin-top: 10px; font-size: 15px; line-height: 1.6; color: #64748B;">Maritza: subir, encontrar asiento y bajar son los tres momentos de mayor riesgo del recorrido.</figcaption>
       </figure>
     </div>
@@ -182,27 +182,27 @@
       <p style="font-size: 17px; line-height: 1.75; color: #475569; max-width: 68ch; margin: 0 0 clamp(26px, 3vw, 40px); text-wrap: pretty;">La arquitectura de Ubícate organiza la complejidad del transporte público en una estructura lineal y eficiente. A través de cinco nodos clave, la app no solo guía al usuario de un punto A a un punto B, sino que integra la gestión financiera del viaje y una capa de seguridad comunitaria, convirtiendo la navegación urbana en una experiencia conectada y segura.</p>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin-bottom: clamp(28px, 4vw, 46px);">
-        <div style="background: #F3F4F6; border-radius: 14px; padding: 22px; border-top: 4px solid #1B5EA8;">
+        <div style="background: #F3F4F6; border-radius: 15px; padding: 22px; border-top: 4px solid #1B5EA8;">
           <span style="display: block; font-size: 13px; font-weight: 800; color: #1B5EA8; margin-bottom: 8px;">01</span>
           <h3 style="font-size: 17px; font-weight: 700; margin: 0 0 8px;">Búsqueda de destino</h3>
           <p style="font-size: 15px; line-height: 1.6; color: #64748B; margin: 0;">Rutas y líneas de transporte (micro, metro, trolebús) para llegar al destino.</p>
         </div>
-        <div style="background: #F3F4F6; border-radius: 14px; padding: 22px; border-top: 4px solid #1B5EA8;">
+        <div style="background: #F3F4F6; border-radius: 15px; padding: 22px; border-top: 4px solid #1B5EA8;">
           <span style="display: block; font-size: 13px; font-weight: 800; color: #1B5EA8; margin-bottom: 8px;">02</span>
           <h3 style="font-size: 17px; font-weight: 700; margin: 0 0 8px;">Información de paraderos</h3>
           <p style="font-size: 15px; line-height: 1.6; color: #64748B; margin: 0;">Ver líneas de micros y recorridos, con frecuencias y horarios.</p>
         </div>
-        <div style="background: #FEF3DA; border-radius: 14px; padding: 22px; border-top: 4px solid #EAA315;">
+        <div style="background: #FEF3DA; border-radius: 15px; padding: 22px; border-top: 4px solid #EAA315;">
           <span style="display: block; font-size: 13px; font-weight: 800; color: #8A5B04; margin-bottom: 8px;">03</span>
           <h3 style="font-size: 17px; font-weight: 700; margin: 0 0 8px;">Pago QR</h3>
           <p style="font-size: 15px; line-height: 1.6; color: #7A5307; margin: 0;">Generador de código en la misma app y recarga de saldo, sin depender del efectivo.</p>
         </div>
-        <div style="background: #F3F4F6; border-radius: 14px; padding: 22px; border-top: 4px solid #1B5EA8;">
+        <div style="background: #F3F4F6; border-radius: 15px; padding: 22px; border-top: 4px solid #1B5EA8;">
           <span style="display: block; font-size: 13px; font-weight: 800; color: #1B5EA8; margin-bottom: 8px;">04</span>
           <h3 style="font-size: 17px; font-weight: 700; margin: 0 0 8px;">Compartir con amigos</h3>
           <p style="font-size: 15px; line-height: 1.6; color: #64748B; margin: 0;">Ubicación en tiempo real, sincronizar contactos y ver en qué micro va la otra persona: línea, número y patente.</p>
         </div>
-        <div style="background: #F3F4F6; border-radius: 14px; padding: 22px; border-top: 4px solid #1B5EA8;">
+        <div style="background: #F3F4F6; border-radius: 15px; padding: 22px; border-top: 4px solid #1B5EA8;">
           <span style="display: block; font-size: 13px; font-weight: 800; color: #1B5EA8; margin-bottom: 8px;">05</span>
           <h3 style="font-size: 17px; font-weight: 700; margin: 0 0 8px;">Alertas</h3>
           <p style="font-size: 15px; line-height: 1.6; color: #64748B; margin: 0;">Seguridad e información ante robos, tráfico y accidentes en micros y paraderos.</p>
@@ -210,7 +210,7 @@
       </div>
 
       <figure style="margin: 0;">
-        <img src="assets/ubicate-arquitectura.png" alt="Diagrama de arquitectura de información de la app Ubícate" style="width: 508px; display: block; border-radius: 14px; background: #FFFFFF; box-shadow: 0 12px 30px rgba(30,41,59,0.12); height: 291px">
+        <img src="assets/ubicate-arquitectura.png" alt="Diagrama de arquitectura de información de la app Ubícate" style="width: 508px; display: block; border-radius: 15px; background: #FFFFFF; box-shadow: 0 12px 30px rgba(30,41,59,0.12); height: 291px">
         <figcaption style="margin-top: 10px; font-size: 15px; line-height: 1.6; color: #64748B; max-width: 74ch;">Árbol completo: desde la home se despliegan búsqueda, mapa en vivo, rutas, pago de tarifa, perfil, compartir con amigos y alertas.</figcaption>
       </figure>
     </div>
@@ -218,8 +218,8 @@
 
   <section style="padding: 0 clamp(16px, 4vw, 40px) clamp(48px, 7vw, 90px); background: #FFFFFF;">
     <div style="max-width: 1120px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; padding-top: 30px; border-top: 1px solid rgba(30,41,59,0.12);">
-      <a href="Portafolio Belen Briones.dc.html#proyectos" style="border: 1px solid rgba(30,41,59,0.2); color: #1E293B; font-size: 16px; font-weight: 600; padding: 14px 24px; border-radius: 999px;" style-hover="border-color: #1B5EA8; color: #1B5EA8;">← Todos los proyectos</a>
-      <a href="https://www.figma.com/proto/peACR3xy5KsTrH51hAojfS/Micro-Zona-C?node-id=281-6335&amp;t=J1u2OD4iRQIm4C6O-1&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=281%3A6335" target="_blank" rel="noopener" style="background: #1B5EA8; color: #FFFFFF; font-size: 16px; font-weight: 600; padding: 15px 26px; border-radius: 999px;" style-hover="background: #144A85;">Ver prototipo en Figma ↗</a>
+      <a href="Portafolio Belen Briones.dc.html#proyectos" style="border: 1px solid rgba(30,41,59,0.2); color: #1E293B; font-size: 16px; font-weight: 600; padding: 14px 24px; border-radius: 15px;" style-hover="border-color: #1B5EA8; color: #1B5EA8;">← Todos los proyectos</a>
+      <a href="https://www.figma.com/proto/peACR3xy5KsTrH51hAojfS/Micro-Zona-C?node-id=281-6335&amp;t=J1u2OD4iRQIm4C6O-1&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=281%3A6335" target="_blank" rel="noopener" style="background: #1B5EA8; color: #FFFFFF; font-size: 16px; font-weight: 600; padding: 15px 26px; border-radius: 15px;" style-hover="background: #144A85;">Ver prototipo en Figma ↗</a>
     </div>
   </section>
 
